@@ -3,35 +3,37 @@ import path from "./path";
 import icons from "./icons";
 
 
-const { AiOutlineDashboard } = icons
+const { AiOutlineDashboard ,LuCat,LiaUserCogSolid,SiProbot,SiCreatereactapp,FaJediOrder,FaUnity} = icons
 export const adminSideBar: typeadminSideBar[] = [
     {
         id: 1,
         type: 'single',
         value: 'Dashboard',
         path: `/${path.DASHBOARD}`,
-        icon: AiOutlineDashboard
+        icon: <LuCat size={20}/>
     },
     {
         id: 2,
         type: 'single',
         value: 'Mangage Users',
         path: `/${path.MANAGE_USER}`,
-        icon: AiOutlineDashboard
+        icon:  <LiaUserCogSolid size={20}/>
     },
     {
         id: 3,
         type: 'parent',
         value: 'Manage Products',
-        icon: AiOutlineDashboard,
+        icon:  <SiProbot/>,
         submenu: [
             {
                 text: 'Create Product',
-                path: `/${path.CREATE_PRODUCTS}`
+                path: `/${path.CREATE_PRODUCTS}`,
+                icon:<SiCreatereactapp size={20}/>
             },
             {
                 text: 'Manage Products',
-                path: `/${path.MANAGE_PRODUCTS}`
+                path: `/${path.MANAGE_PRODUCTS}`,
+                icon:<FaJediOrder size={20}/>
             }
         ],
     },
@@ -40,6 +42,6 @@ export const adminSideBar: typeadminSideBar[] = [
         type: 'single',
         value: 'Manage Orders',
         path: `/${path.MANAGE_ORDER}`,
-        icon: AiOutlineDashboard
+        icon:  <FaUnity size={20}/>
     },
 ]

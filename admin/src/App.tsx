@@ -11,7 +11,6 @@ import Create_Product from '@page/admin/Create_Product'
 function App() {
   return (
     <div className='min-h-screen  font-sans  relative'>
-
       <Routes>
         <Route path={path.ADMIN} element={<AdminLayout />}>
           <Route path={path.DASHBOARD} element={<DashBoard />} />
@@ -20,10 +19,9 @@ function App() {
           <Route path={path.MANAGE_PRODUCTS} element={<ManagerProduct />} />
           <Route path={path.MANAGE_ORDER} element={<ManagerOrder />} />
         </Route>
-        <Route path={path.LOGIN} element={<Login/>} />
+        <Route path={path.LOGIN} element={<Login />} />
       </Routes>
     </div>
   )
 }
-
 export default App

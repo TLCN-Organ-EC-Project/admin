@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { IconType } from 'react-icons';
 
 
@@ -6,12 +7,13 @@ export interface typeadminSideBar {
     type: string,
     value: string,
     path?: string,
-    icon: IconType,
-    submenu?: SubmenuItem[]
+    icon: ReactNode,
+    submenu?: SubmenuItem[] 
 }
 
 interface SubmenuItem {
     text?: string;
     path?: string;
+    icon?: ReactNode,
 }
 
