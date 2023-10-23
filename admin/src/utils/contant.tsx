@@ -4,7 +4,7 @@ import path from "./path";
 import icons from "./icons";
 
 
-const { AiOutlineUserAdd, FaRegWindowRestore, BiBookAlt, AiOutlineDashboard, LuCat, LiaUserCogSolid, SiProbot, SiCreatereactapp, FaJediOrder, FaUnity } = icons
+const { AiOutlineUserAdd, FaRegWindowRestore, BiBookAlt, AiOutlineLogin, LuCat, LiaUserCogSolid, SiProbot, SiCreatereactapp, FaJediOrder, FaUnity } = icons
 export const adminSideBar: typeadminSideBar[] = [
     {
         id: 1,
@@ -44,6 +44,13 @@ export const adminSideBar: typeadminSideBar[] = [
         value: 'Manage Orders',
         path: `/${path.MANAGE_ORDER}`,
         icon: <FaUnity size={20} />
+    },
+    {
+        id: 4,
+        type: 'single',
+        value: 'Login',
+        path: `/${path.LOGIN}`,
+        icon: <AiOutlineLogin size={20} />
     },
 ]
 

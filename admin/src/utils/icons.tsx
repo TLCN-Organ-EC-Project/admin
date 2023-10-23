@@ -1,5 +1,5 @@
 import {ImBin} from 'react-icons/im'
-import {AiOutlineDashboard,AiOutlineUserAdd} from 'react-icons/ai'
+import {AiOutlineDashboard,AiOutlineUserAdd,AiOutlineLogin} from 'react-icons/ai'
 import {LuCat} from 'react-icons/lu'
 import {BiBookAlt} from 'react-icons/bi'
 import {LiaUserCogSolid} from 'react-icons/lia'
@@ -18,5 +18,6 @@ const icons={
     SiCreatereactapp,
     FaJediOrder,
     FaUnity,
+    AiOutlineLogin,
 }
 export default icons

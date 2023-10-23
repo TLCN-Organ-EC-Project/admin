@@ -1,8 +1,13 @@
 import React from 'react'
 
+
 const Login = () => {
   return (
-    <div>Login</div>
+    <div
+      className='bg-login min-w-screen min-h-screen object-contain'
+    > 
+
+    </div>
   )
 }
 
