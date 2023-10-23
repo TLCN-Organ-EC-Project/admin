@@ -4,6 +4,9 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Helvetica Neue", "Arial", "Noto Sans", "sans-serif"],
+      },
+      backgroundColor:{
+        main:'rgb(240, 242, 245)'
       }
     },
   },
