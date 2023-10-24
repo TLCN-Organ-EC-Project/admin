@@ -1,19 +1,25 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import Input from '@comp/Input/Input'
 import {
   FieldValues,
   SubmitHandler,
   useForm
 } from "react-hook-form";
+import Swal from 'sweetalert2'
 import Button from '@comp/Button/Button';
-import {SiInteractiondesignfoundation} from 'react-icons/si'
-
+import { SiInteractiondesignfoundation } from 'react-icons/si'
+import { IUserLogin, IUserSchema } from '@type/@typeUser';
+import { apiLogin } from '@api/user';
+import { useNavigate } from 'react-router-dom';
+import path from '@util/path';
 const Login = () => {
-
   const [isLoading, setIsLoading] = useState(false);
+  const [dataUserLogin, setDataUserLogin] = useState<IUserSchema>()
+  const navigate=useNavigate()
   const {
     register,
     handleSubmit,
+    watch,
     formState: {
       errors,
     },
@@ -23,9 +29,26 @@ const Login = () => {
       password: ''
     },
   });
-  const handleSignIn:SubmitHandler<FieldValues>=(data)=>{
-      setIsLoading(true);
-  }
+
+ 
+  const data = {
+    username: watch('username') ?? '',
+    password: watch('password') ?? '',
+  };
+
+  const handleSignIn = useCallback(async () => {
+    if (data!==null && data!== undefined){
+      const response = await apiLogin(data)
+      if (response?.data){
+        setDataUserLogin(response.data)
+        navigate(`/${path.DASHBOARD}`)
+      }
+      else{
+        Swal.fire('Oops!','Login Failed, Please login again')
+      }
+    }
+  }, [watch('username'), watch('password')]);
+ 
   return (
     <div
       className='bg-login w-screen h-screen relative'
@@ -53,7 +76,7 @@ const Login = () => {
             />
           </div>
           <div className='translate-y-40 '>
-            <Button   label='Sign in' onClick={handleSignIn}  icon={SiInteractiondesignfoundation}/>
+            <Button label='Sign in' onClick={handleSignIn} icon={SiInteractiondesignfoundation} />
           </div>
         </div>
       </div>

@@ -9,18 +9,13 @@ const instance = axios.create({
   timeout: 2000,
 });
 
-instance.interceptors.request.use(function (config: AxiosRequestConfig)
- {
-    config.headers = config.headers || {}; 
+instance.interceptors.request.use(
+  function (config) {
+    config.headers = config.headers || {};
     config.headers['Accept'] = 'application/json';
     config.headers['Content-Type'] = 'application/json';
-    let localStorageData = window.localStorage.getItem('persist:shop/user');
-    if (localStorageData && typeof localStorageData === 'string') {
-      const parsedData = JSON.parse(localStorageData) as LocalStorageData;
-      const accessToken = parsedData.token;
-      config.headers = { authorization: `Bearer ${accessToken}` };
-      return config;
-    } else return config;
+   /*  let localStorageData = window.localStorage.getItem('persist:shop/user'); */
+    return config;
   },
   function (error) {
     return Promise.reject(error);
