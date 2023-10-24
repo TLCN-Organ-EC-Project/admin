@@ -10,7 +10,7 @@ import Create_Product from '@page/admin/Create_Product'
 
 function App() {
   return (
-    <div className='min-h-screen  font-sans  relative'>
+    <div className=''>
       <Routes>
         <Route path={path.ADMIN} element={<AdminLayout />}>
           <Route path={path.DASHBOARD} element={<DashBoard />} />

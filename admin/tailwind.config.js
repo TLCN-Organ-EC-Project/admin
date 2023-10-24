@@ -9,7 +9,7 @@ export default {
         main:'rgb(240, 242, 245)'
       },
       backgroundImage:{
-        'login':"url('./src/assets/bg.jpeg')",
+        'login':"url('./src/assets/bg2.jpg')",
       }
     },
   },

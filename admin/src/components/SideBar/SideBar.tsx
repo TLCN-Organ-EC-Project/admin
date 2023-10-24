@@ -10,11 +10,11 @@ interface children {
 const activedStyle=' px-3 py-2 flex items-center gap-3 font-sans bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-600 transition-colors group'
 const notactivedStyle='px-3 py-2 flex items-center gap-3 font-sans hover:bg-indigo-50 text-gray-600'
 const SideBar: React.FC<children> = ({
-  active
+ 
 }) => {
+
   const [expanded, setExpanded] = useState(true)
   const [actived, setactived] = useState<number[]>([]);
-
   const handleShowTabs = (tabID: number) => {
     if (actived.some(el => el === tabID)) {
       setactived((prev: number[]) => prev.filter((el) => el !== tabID));
