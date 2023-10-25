@@ -9,6 +9,7 @@
         "@type/*": ["src/types/*"],
         "@page/*": ["src/pages/*"],
         "@hook/*": ["src/hooks/*"],
+        "@store/*": ["src/stores/*"],
         "@asset/*": ["src/assets/*"],
       }
     }

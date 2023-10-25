@@ -1,21 +1,20 @@
 import React, { useCallback, useState } from 'react'
-import Input from '@comp/Input/Input'
-import {
-  FieldValues,
-  SubmitHandler,
-  useForm
-} from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import Swal from 'sweetalert2'
-import Button from '@comp/Button/Button';
 import { SiInteractiondesignfoundation } from 'react-icons/si'
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import Button from '@comp/Button/Button';
 import { IUserLogin, IUserSchema } from '@type/@typeUser';
 import { apiLogin } from '@api/user';
-import { useNavigate } from 'react-router-dom';
 import path from '@util/path';
+import Input from '@comp/Input/Input'
+import { login } from '@store/user/useSlice';
 const Login = () => {
+  const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(false);
   const [dataUserLogin, setDataUserLogin] = useState<IUserSchema>()
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -30,25 +29,31 @@ const Login = () => {
     },
   });
 
- 
+
   const data = {
     username: watch('username') ?? '',
     password: watch('password') ?? '',
   };
 
   const handleSignIn = useCallback(async () => {
-    if (data!==null && data!== undefined){
+    if (data !== null && data !== undefined) {
       const response = await apiLogin(data)
-      if (response?.data){
+      if (response && response?.data) {
+        const token = (response.headers as any)?.get('x-access-token')
         setDataUserLogin(response.data)
         navigate(`/${path.DASHBOARD}`)
+        dispatch(login({
+          isLoggedIn: true,
+          token: token,
+          current: response.data
+        }))
       }
-      else{
-        Swal.fire('Oops!','Login Failed, Please login again')
+      else {
+        Swal.fire('Oops!', 'Login Failed, Please login again')
       }
     }
   }, [watch('username'), watch('password')]);
- 
+
   return (
     <div
       className='bg-login w-screen h-screen relative'
@@ -68,7 +73,7 @@ const Login = () => {
             <Input
               id="password"
               label="Password"
-              type='password'
+              /*    type='password' */
               disabled={isLoading}
               register={register}
               errors={errors}

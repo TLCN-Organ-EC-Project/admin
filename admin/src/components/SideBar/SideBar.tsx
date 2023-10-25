@@ -7,10 +7,10 @@ import clsx from 'clsx'
 interface children {
   active?: boolean,
 }
-const activedStyle=' px-3 py-2 flex items-center gap-3 font-sans bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-600 transition-colors group'
-const notactivedStyle='px-3 py-2 flex items-center gap-3 font-sans hover:bg-indigo-50 text-gray-600'
+const activedStyle = ' px-3 py-2 flex items-center gap-3 font-sans bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-600 transition-colors group'
+const notactivedStyle = 'px-3 py-2 flex items-center gap-3 font-sans hover:bg-indigo-50 text-gray-600'
 const SideBar: React.FC<children> = ({
- 
+
 }) => {
 
   const [expanded, setExpanded] = useState(true)
@@ -37,12 +37,14 @@ const SideBar: React.FC<children> = ({
       </div>
 
       <div className="flex flex-col gap-3 justify-center ml-1 font-sans">
-        {adminSideBar.map(el => (
-          <div key={el.id}>
+        {adminSideBar.map((el) => (
+          <div
+            key={el.value}
+          >
             {el.type === 'single' &&
               <NavLink
                 to={el.path !== undefined ? el.path : '/'}
-                className={({isActive})=>clsx(isActive && activedStyle, !isActive && notactivedStyle)}
+                className={({ isActive }) => clsx(isActive && activedStyle, !isActive && notactivedStyle)}
               >
                 <span>{el.icon}</span>
                 <span>{el.value}</span>
@@ -69,7 +71,7 @@ const SideBar: React.FC<children> = ({
                           key={item.text}
                           to={item.path !== undefined ? item.path : '/'}
                           onClick={e => e.stopPropagation()}
-                          className={({isActive})=>clsx(isActive && activedStyle, !isActive && notactivedStyle,'pl-10')}
+                          className={({ isActive }) => clsx(isActive && activedStyle, !isActive && notactivedStyle, 'pl-10')}
                         >
                           <span>{item.icon}</span>
                           <span>{item.text}</span>

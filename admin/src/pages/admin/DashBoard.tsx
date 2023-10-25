@@ -7,7 +7,7 @@ import GradientChart from '@comp/Dashboard/GradientChart'
 const DashBoard = () => {
   return (
     <div >
-        <div>Dashboard</div>
+        <div className='underline'>Dashboard</div>
         <div className='grid grid-cols-3 gap-8 p-8 justify-around'>
             {dashboard.map((el)=>(
               <DashboardItem data={el} key={el.id}/>
