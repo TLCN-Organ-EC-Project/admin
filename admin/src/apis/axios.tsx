@@ -1,26 +1,26 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-
-interface LocalStorageData {
-  token: string;
-}
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 
 const instance = axios.create({
   baseURL: 'https://gin-ec-clothing.onrender.com/api',
   timeout: 2000,
 });
 
-instance.interceptors.request.use(
-  function (config) {
-    config.headers = config.headers || {};
-    config.headers['Accept'] = 'application/json';
-    config.headers['Content-Type'] = 'application/json';
-   /*  let localStorageData = window.localStorage.getItem('persist:shop/user'); */
-    return config;
-  },
-  function (error) {
-    return Promise.reject(error);
+instance.interceptors.request.use((config) => {
+  config.headers = config.headers || {};
+  config.headers['Accept'] = 'application/json';
+  config.headers['Content-Type'] = 'application/json';
+  let localStorageData = window.localStorage.getItem('persist:user');
+  if (localStorageData && typeof localStorageData === 'string') {
+    const parsedData = JSON.parse(localStorageData);
+    if (parsedData && typeof parsedData === 'object' && 'token' in parsedData) {
+      const accessToken = parsedData.token;
+      config.headers['Authorization'] = `Bearer ${accessToken}`;
+    }
   }
-);
+  return config
+}, (error) => {
+  return Promise.reject(error)
+});
 
 instance.interceptors.response.use(
   function (response: AxiosResponse) {

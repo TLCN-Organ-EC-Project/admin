@@ -4,9 +4,16 @@ import logo from '@asset/logo.webp'
 import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react"
 import { NavLink } from "react-router-dom"
 import clsx from 'clsx'
+import { useAppSelector,useAppDispatch } from "@hook/hooks"
+import path from "@util/path"
+import icons from "@util/icons"
+import { logout } from "@store/user/useSlice"
 interface children {
   active?: boolean,
 }
+
+const {AiOutlineLogin,RiLogoutCircleLine}=icons
+
 const activedStyle = ' px-3 py-2 flex items-center gap-3 font-sans bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-600 transition-colors group'
 const notactivedStyle = 'px-3 py-2 flex items-center gap-3 font-sans hover:bg-indigo-50 text-gray-600'
 const SideBar: React.FC<children> = ({
@@ -15,6 +22,12 @@ const SideBar: React.FC<children> = ({
 
   const [expanded, setExpanded] = useState(true)
   const [actived, setactived] = useState<number[]>([]);
+  const { isLoggedIn, current,token } = useAppSelector((state) => ({
+    isLoggedIn: state.user.isLoggedIn,
+    current: state.user.current,
+    token:state.user.token
+  }));
+  const dispatch = useAppDispatch()
   const handleShowTabs = (tabID: number) => {
     if (actived.some(el => el === tabID)) {
       setactived((prev: number[]) => prev.filter((el) => el !== tabID));
@@ -29,6 +42,7 @@ const SideBar: React.FC<children> = ({
           src={logo}
           className={`overflow-hidden transition-all ${expanded ? "w-32" : "w-0"
             }`} />
+           
         <button
           onClick={() => setExpanded((curr) => !curr)}
           className="p-1.5 rounded-lg bg-gray-50 hover:bg-gray-100">
@@ -84,6 +98,23 @@ const SideBar: React.FC<children> = ({
             }
           </div>
         ))}
+        { isLoggedIn 
+        ?
+         <NavLink
+         className={({ isActive }) => clsx(isActive && activedStyle, !isActive && notactivedStyle)} 
+         to={path.LOGIN}
+         onClick={()=>dispatch(logout())}
+         >
+          <span><RiLogoutCircleLine size={20}/></span>
+          <span>Logout</span>
+        </NavLink> 
+         :
+          <NavLink
+          className={({ isActive }) => clsx(isActive && activedStyle, !isActive && notactivedStyle)}
+           to={path.LOGIN}>
+            <span><AiOutlineLogin size={20}/></span>
+            <span>Login</span>
+            </NavLink>}
       </div>
 
 

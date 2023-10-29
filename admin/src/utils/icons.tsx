@@ -1,6 +1,7 @@
 import {ImBin} from 'react-icons/im'
 import {AiOutlineDashboard,AiOutlineUserAdd,AiOutlineLogin} from 'react-icons/ai'
 import {LuCat} from 'react-icons/lu'
+import {RiLogoutCircleLine} from 'react-icons/ri'
 import {BiBookAlt} from 'react-icons/bi'
 import {LiaUserCogSolid} from 'react-icons/lia'
 import {FaJediOrder,FaUnity,FaRegWindowRestore} from 'react-icons/fa'
@@ -11,6 +12,7 @@ const icons={
     AiOutlineDashboard,
     AiOutlineUserAdd,
     FaRegWindowRestore,
+    RiLogoutCircleLine,
     BiBookAlt,
     LuCat,
     LiaUserCogSolid,

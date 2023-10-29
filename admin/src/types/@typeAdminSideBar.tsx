@@ -8,6 +8,7 @@ export interface typeadminSideBar {
     value: string,
     path?: string,
     icon: ReactNode,
+    isLoggedIn?:boolean,
     submenu?: SubmenuItem[] 
 }
 
