@@ -13,3 +13,13 @@ export interface IUserLogin {
     password: string;
 } 
 
+export interface IUserManager{
+    username:string,
+    full_name:string,
+    email:string,
+    phone:string,
+    created_at:string,
+    address:string,
+    province:string,
+
+}
