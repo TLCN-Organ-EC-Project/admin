@@ -2,22 +2,15 @@ import React, { useState } from 'react'
 import { useGetListUserByAdmin } from '@hook/useGetList'
 import { useForm ,FieldValues} from 'react-hook-form';
 import { IUserManager } from '@type/@typeUser';
+import Input from '@comp/Input/Input';
+import ItemUser from '@comp/ManagerUser/ItemUser';
+
 const ManagerUser = () => {
   const [edit, setedit] = useState(null)
-  const { handleSubmit, register, formState: { errors } ,reset} = useForm<FieldValues>({
-   defaultValues:{
-      username:'',
-      full_name:'',
-      email:'',
-      phone:'',
-      created_at:'',
-      address:'',
-      province:'',
-   }
-  })
+  const { handleSubmit,register, formState: { errors } ,reset} = useForm<FieldValues>()
 
  const {data:listUser, isLoading:isFetchDataUser}=useGetListUserByAdmin();
- console.log(listUser)
+
   return (
     <div className='w-full'>
           <h2 className='py-4'>Manager User</h2>
@@ -37,10 +30,8 @@ const ManagerUser = () => {
                     </tr>
                   </thead>
                   <tbody>
-                      {listUser?.map((el:any, index:number)=>(
-                        <tr className='border border-gray-300' key={el.id}>
-                          <td className='py-2 px-5'>{index+1}</td>
-                        </tr>
+                      {listUser?.map((el:IUserManager, index:number)=>(
+                        <ItemUser data={el} index={index} key={el.email}/>
                       ))}
                   </tbody>
                 </table>

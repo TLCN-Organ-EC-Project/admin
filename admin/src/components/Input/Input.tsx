@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{memo} from 'react'
 import {
   FieldErrors,
   FieldValues,
@@ -6,16 +6,18 @@ import {
 } from "react-hook-form";
 
 interface InputProps {
-  id: string;
-  label: string;
-  type?: string;
-  disabled?: boolean;
-  required?: boolean;
+  id: string,
+  label?: string,
+  type?: string,
+  disabled?: boolean,
+  required?: boolean,
+  inputUser?:boolean,
   register: UseFormRegister<FieldValues>,
-  errors: FieldErrors
+  errors: FieldErrors,
+  defaultValue?:string,
 }
 const Input: React.FC<InputProps> = ({
-  id, label, type = "text", disabled, register, required, errors
+  id, label, type = "text", disabled,defaultValue, register, required, errors,inputUser
 }) => {
   return (
     <div className="w-full relative">
@@ -44,19 +46,20 @@ const Input: React.FC<InputProps> = ({
         {...register(id, { required })}
         placeholder=" "
         type={type}
+        defaultValue={defaultValue}
         className={`
         peer
-        w-full
-        p-4
-        pt-6 
         font-light 
         bg-white 
         border-2
-        rounded-md
         outline-none
         transition
         disabled:opacity-70
         disabled:cursor-not-allowed
+        ${inputUser ? 'w-[90%] ' :'w-full'}
+        ${inputUser ? ' ' :'p-4'}
+        ${inputUser ? ' ' :' rounded-md'}
+        ${inputUser ? ' ' :'pt-6'}
         ${errors[id] ? 'border-rose-500' : 'border-neutral-300'}
         ${errors[id] ? 'focus:border-rose-500' : 'focus:border-black'}
       `}
@@ -66,4 +69,4 @@ const Input: React.FC<InputProps> = ({
   )
 }
 
-export default Input
+export default memo(Input)

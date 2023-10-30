@@ -73,7 +73,7 @@ const Login = () => {
             <Input
               id="password"
               label="Password"
-              /*    type='password' */
+              type='password'
               disabled={isLoading}
               register={register}
               errors={errors}
