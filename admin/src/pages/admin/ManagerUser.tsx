@@ -19,14 +19,14 @@ const ManagerUser = () => {
                 <table className='table-auto mb-6 text-left w-full'>
                   <thead className='font-bold bg-gray-700 text-[13px] border border-gray-500 text-center  text-white'>
                     <tr>
-                      <th className='px-10 py-2 border border-r-2 border-gray-700 border-r-white'>#</th>
+                      <th className='px-3 py-2 border border-r-2 border-gray-700 border-r-white'>#</th>
                       <th className='px-10 py-2 border border-r-2 border-gray-700 border-r-white'>Username</th>
                       <th className='px-10 py-2 border border-r-2 border-gray-700 border-r-white'>Fullname</th>
                       <th className='px-10 py-2 border border-r-2 border-gray-700 border-r-white'>Email</th>
                       <th className='px-10 py-2 border border-r-2 border-gray-700 border-r-white'>Phone</th>
                       <th className='px-10 py-2 border border-r-2 border-gray-700 border-r-white'>Created_At</th>
-                      <th className='px-10 py-2 border border-r-2 border-gray-700 border-r-white'>Address</th>
-                      <th className='px-10 py-2 border border-r-2 border-gray-700 '>Province</th>
+                      <th className='px-10 py-2 border border-r-2 border-gray-700 '>Address</th>
+                     
                     </tr>
                   </thead>
                   <tbody>
