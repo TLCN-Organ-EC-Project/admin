@@ -6,3 +6,9 @@ export const apiLogin = (data:IUserLogin) => axios({
     method: 'post',
     data
 })
+
+
+export const apiDeleteUser = (username:string)=>axios({
+    url:'/admin/users/'+username,
+    method:'delete',
+})
