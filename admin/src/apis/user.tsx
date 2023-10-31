@@ -1,5 +1,5 @@
 import axios  from "./axios";
-import { IUserLogin,IUserSchema } from "@type/@typeUser";
+import { IUserLogin,IUserUpdate } from "@type/@typeUser";
 
 export const apiLogin = (data:IUserLogin) => axios({
     url: '/login',
@@ -11,4 +11,10 @@ export const apiLogin = (data:IUserLogin) => axios({
 export const apiDeleteUser = (username:string)=>axios({
     url:'/admin/users/'+username,
     method:'delete',
+})
+
+export const apiUpdateUser = (data:IUserUpdate, username :string)=>axios({
+    url:'/admin/users/'+username,
+    method:'put',
+    data
 })

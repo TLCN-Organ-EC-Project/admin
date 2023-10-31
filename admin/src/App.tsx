@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import path from './utils/path'
+import path from '@util/path'
 import AdminLayout from '@page/admin/AdminLayout'
 import DashBoard from '@page/admin/DashBoard'
 import ManagerUser from '@page/admin/ManagerUser'

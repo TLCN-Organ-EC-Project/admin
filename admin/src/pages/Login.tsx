@@ -5,11 +5,12 @@ import { SiInteractiondesignfoundation } from 'react-icons/si'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import Button from '@comp/Button/Button';
-import { IUserLogin, IUserSchema } from '@type/@typeUser';
+import { IUserSchema } from '@type/@typeUser';
 import { apiLogin } from '@api/user';
 import path from '@util/path';
 import Input from '@comp/Input/Input'
 import { login } from '@store/user/useSlice';
+
 const Login = () => {
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(false);

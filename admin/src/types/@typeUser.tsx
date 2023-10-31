@@ -20,6 +20,13 @@ export interface IUserManager{
     phone:string,
     created_at:string,
     address:string,
-    province:string,
-
+    province?:string,
+  
+}
+export interface IUserUpdate{
+    address:string,
+    email:string,
+    full_name:string,
+    phone:string,
+    province?:string,
 }
