@@ -13,6 +13,7 @@ const ManagerUser = () => {
 
   const { data: listUser, isLoading: isFetchDataUser } = useGetListUserByAdmin();
 
+  console.log(listUser)
   return (
     <div className='w-full'>
       <h2 className='py-4'>Manager User</h2>

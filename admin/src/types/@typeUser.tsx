@@ -20,7 +20,7 @@ export interface IUserManager{
     phone:string,
     created_at:string,
     address:string,
-    province?:string,
+    province?:number | undefined,
   
 }
 export interface IUserUpdate{

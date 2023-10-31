@@ -12,6 +12,18 @@ export const getAllUserByAdmin= async() =>{
         }).then((res) => res?.data)
         return data;
     } catch (error) {
-        throw Error(`Failed to fetch products by category: ${error}`);
+        throw Error(`Failed to fetch User by admin: ${error}`);
+    }
+}
+
+export const getListProviderById=async(pid:number)=>{
+    try{
+        const data =await axios({
+            url:`/provinces/${pid}`,
+            method:'get',
+        }).then ((res)=>res?.data)
+        return data;
+    }catch (error){
+        throw Error (`Failed to fetch Provider by admin: ${error}`);
     }
 }

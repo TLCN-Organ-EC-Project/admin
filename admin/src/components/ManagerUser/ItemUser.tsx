@@ -9,6 +9,7 @@ import { apiDeleteUser } from '@api/user'
 import { IUserManager } from '@type/@typeUser'
 import { apiUpdateUser } from '@api/user'
 import { IUserUpdate } from '@type/@typeUser'
+import { adminGetListProviderById } from '@hook/useGetList'
 
 interface typeData {
     data: IUserManager,
@@ -17,12 +18,27 @@ interface typeData {
 interface typeUpdate {
     username: string
 }
+interface typeProvider{
+    id:number, 
+    name:string,
+}
 const ItemUser: React.FC<typeData> = ({
     data, index
 }) => {
     const queryClient = useQueryClient();
+    const [provide, setProvide] = useState<typeProvider | null>(null)
     const [update, setUpdate] = useState<typeUpdate | null>(null)
     const { handleSubmit, watch,register, formState: { errors }, reset } = useForm<FieldValues>()
+    
+    
+/* 
+    if(data  && data.province){
+        const {data:listProvider, isLoading:isFetchDataProvider}=adminGetListProviderById(+data?.province)
+        setProvide(listProvider)
+    } */
+
+
+   
 
     const handleDeleteUser = (username: string | undefined) => {
         Swal.fire({
@@ -47,8 +63,9 @@ const ItemUser: React.FC<typeData> = ({
     const handleUpdateUser = async (data: IUserUpdate, username: string) => {
         const response = await apiUpdateUser(data, username)
         if (response) {
-            queryClient.invalidateQueries(['user-data'])
             toast.success('Update success user')
+            queryClient.invalidateQueries(['user-data'])
+            setUpdate(null)
         } else {
             toast.error('Can not update user')
         }
