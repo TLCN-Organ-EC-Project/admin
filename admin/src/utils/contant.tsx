@@ -1,11 +1,12 @@
 import { typeadminSideBar } from "@type/@typeAdminSideBar";
 import { typeDashBoard } from "@type/@typeAdminDashBoard";
+import { SubmenuItem } from "@type/@typeManagerProduct";
 import path from "./path";
 import icons from "./icons";
 
 
 
-const { AiOutlineUserAdd, FaRegWindowRestore, BiBookAlt, AiOutlineLogin, LuCat, LiaUserCogSolid, SiProbot, SiCreatereactapp, FaJediOrder, FaUnity } = icons
+const { AiOutlineUserAdd, FaRegWindowRestore, BiBookAlt, LuCat, LiaUserCogSolid, SiProbot, SiCreatereactapp, FaJediOrder, FaUnity } = icons
 export const adminSideBar: typeadminSideBar[] = [
     {
         id: 1,
@@ -28,14 +29,14 @@ export const adminSideBar: typeadminSideBar[] = [
         icon: <SiProbot />,
         submenu: [
             {
-                text: 'Create Product',
-                path: `/${path.CREATE_PRODUCTS}`,
-                icon: <SiCreatereactapp size={20} />
-            },
-            {
                 text: 'Manage Products',
                 path: `/${path.MANAGE_PRODUCTS}`,
                 icon: <FaJediOrder size={20} />
+            },
+            {
+                text: 'Create Product',
+                path: `/${path.CREATE_PRODUCTS}`,
+                icon: <SiCreatereactapp size={20} />
             }
         ],
     },
@@ -75,3 +76,52 @@ export const dashboard: typeDashBoard[] = [
         icon: <AiOutlineUserAdd size={30} color="white" />
     },
 ]
+
+export const category:SubmenuItem[] = [
+    {
+      id: 1,
+      text: "T-Shirt",
+      path:'t-shirt',
+    },
+    {
+      id: 2,
+      text: "Short",
+      path:'short',
+    },
+    {
+      id: 3,
+      text: "Shocks",
+      path:'shocks',
+    },
+    {
+      id: 4,
+      text: "Polo",
+      path:'polo'
+    },
+    {
+      id: 5,
+      text: "Hat",
+      path:'hat'
+    },
+    {
+      id: 6,
+      text: "Bag",
+      path:'bag',
+    },
+    {
+      id: 7,
+      text: "Hoodie",
+      path:'hoodie',
+    },
+    {
+      id: 8,
+      text: "Jeans",
+      path:'jeans',
+    },
+    {
+      id: 9,
+      text: "Trousers",
+      path:'trousers',
+    }
+  ]
+  

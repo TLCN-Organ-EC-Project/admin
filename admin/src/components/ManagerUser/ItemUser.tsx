@@ -30,16 +30,6 @@ const ItemUser: React.FC<typeData> = ({
     const [update, setUpdate] = useState<typeUpdate | null>(null)
     const { handleSubmit, watch,register, formState: { errors }, reset } = useForm<FieldValues>()
     
-    
-/* 
-    if(data  && data.province){
-        const {data:listProvider, isLoading:isFetchDataProvider}=adminGetListProviderById(+data?.province)
-        setProvide(listProvider)
-    } */
-
-
-   
-
     const handleDeleteUser = (username: string | undefined) => {
         Swal.fire({
             title: 'Are you want delete user',
@@ -79,7 +69,6 @@ const ItemUser: React.FC<typeData> = ({
         province:'Quảng Nam',
     }
  
-    console.log(dataUpdate)
     return (
         <>
             <tr className='border border-gray-300'>

@@ -27,3 +27,4 @@ export const getListProviderById=async(pid:number)=>{
         throw Error (`Failed to fetch Provider by admin: ${error}`);
     }
 }
+
