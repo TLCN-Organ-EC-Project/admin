@@ -19,7 +19,7 @@ const ItemProduct:React.FC<typeData>= ({
     const [update, setUpdate]=useState<typeUpdate | null>(null)
     const { handleSubmit, watch,register, formState: { errors }, reset } = useForm<FieldValues>()
     const handleDeleteUser=(pid:number)=>{
-
+            
     }
   return (
     <>

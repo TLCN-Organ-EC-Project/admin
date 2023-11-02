@@ -24,8 +24,8 @@ export const getListCategoryAdmin=()=>{
     })
 }
 
-export const usegetListPd = ()=>{
-    return useQuery(["product-data"],()=>getListProduct(),{
+export const usegetListPd = (page_id:number)=>{
+    return useQuery(["product-data",page_id],()=>getListProduct(page_id),{
         staleTime: 5 * 60 * 1000,
         retry: false
     })

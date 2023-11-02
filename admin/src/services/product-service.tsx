@@ -12,13 +12,13 @@ export const getListCategory= async() =>{
     }
 }
 
-export const getListProduct= async() =>{
+export const getListProduct= async(page_id:number) =>{
     try {
         const data = await axios({
             url: `/products`,
             method: 'get',
             params: {
-                page_id: 1,
+                page_id: page_id,
                 page_size: 10,
             }
         }).then((res) => res?.data)

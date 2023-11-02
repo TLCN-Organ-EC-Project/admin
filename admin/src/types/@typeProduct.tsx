@@ -5,3 +5,13 @@ export interface IProduct {
     price:number,
 
 } 
+
+export interface ICreateProduct{
+    gender:string, 
+    material:string, 
+    price:number,
+    product_name:string,
+    size:string,
+    size_of_model:string,
+    thumb:string
+}

@@ -1,6 +1,7 @@
 import { useGetListUserByAdmin } from '@hook/useGetList'
 import { IUserManager } from '@type/@typeUser';
 import ItemUser from '@comp/ManagerUser/ItemUser';
+import Loading from '@comp/Loading/Loading';
 
 const ManagerUser = () => {
   const { data: listUser, isLoading: isFetchDataUser } = useGetListUserByAdmin();
@@ -21,11 +22,14 @@ const ManagerUser = () => {
               <th className='px-10 py-2 border border-r-2  '>Action</th>
             </tr>
           </thead>
+        {
+          isFetchDataUser ? <Loading/> :
           <tbody>
-            {listUser?.map((el: IUserManager, index: number) => (
-              <ItemUser data={el} index={index} key={el.email} />
-            ))}
-          </tbody>
+          {listUser?.map((el: IUserManager, index: number) => (
+            <ItemUser data={el} index={index} key={el.email} />
+          ))}
+        </tbody>
+        }
         </table>
       </div>
     </div>
