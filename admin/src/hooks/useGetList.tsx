@@ -1,6 +1,6 @@
 import { useQuery } from "react-query"
 import { getAllUserByAdmin,getListProviderById, } from "@service/user-service"
-import { getListCategory,getListProduct } from "@service/product-service"
+import { getListCategory,getListProduct,getListOrder } from "@service/product-service"
 
 
 export const useGetListUserByAdmin=()=>{
@@ -26,6 +26,13 @@ export const getListCategoryAdmin=()=>{
 
 export const usegetListPd = (page_id:number)=>{
     return useQuery(["product-data",page_id],()=>getListProduct(page_id),{
+        staleTime: 5 * 60 * 1000,
+        retry: false
+    })
+}
+
+export const useGetListOrderByAdmin=()=>{
+    return useQuery(["order-data"], ()=>getListOrder(),{
         staleTime: 5 * 60 * 1000,
         retry: false
     })

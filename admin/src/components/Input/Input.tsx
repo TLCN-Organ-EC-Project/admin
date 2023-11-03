@@ -15,9 +15,10 @@ interface InputProps {
   register: UseFormRegister<FieldValues>,
   errors: FieldErrors,
   defaultValue?:string,
+  onChange?:any,
 }
 const Input: React.FC<InputProps> = ({
-  id, label, type = "text", disabled,defaultValue, register, required, errors,inputUser
+  id, label, type = "text", disabled,defaultValue, register, required, errors,inputUser,onChange
 }) => {
   return (
     <div className="w-full relative">
@@ -47,6 +48,7 @@ const Input: React.FC<InputProps> = ({
         placeholder=" "
         type={type}
         defaultValue={defaultValue}
+        onChange={onChange}
         className={`
         peer
         font-light 

@@ -36,6 +36,7 @@ const Login = () => {
     password: watch('password') ?? '',
   };
 
+  console.log(data  )
   const handleSignIn = useCallback(async () => {
     if (data !== null && data !== undefined) {
       const response = await apiLogin(data)
@@ -46,7 +47,7 @@ const Login = () => {
         dispatch(login({
           isLoggedIn: true,
           token: token,
-          current: response.data
+          current: response.data,
         }))
       }
       else {

@@ -8,7 +8,7 @@ export const getListCategory= async() =>{
         }).then((res) => res?.data)
         return data;
     } catch (error) {
-        throw Error(`Failed to fetch Category by admin: ${error}`);
+        throw new Error(`Failed to fetch Category by admin: ${error}`);
     }
 }
 
@@ -24,7 +24,22 @@ export const getListProduct= async(page_id:number) =>{
         }).then((res) => res?.data)
         return data;
     } catch (error) {
-        throw Error(`Failed to fetch Product : ${error}`);
+        throw new Error(`Failed to fetch Product : ${error}`);
     }
 }
 
+export const getListOrder=async ()=>{
+    try{
+        const data=await axios({
+            url: `/admin/orders`,
+            method: 'get',
+            params: {
+                page_id: 1,
+                page_size: 10,
+            }
+        }).then((res) => res?.data)
+        return data;
+    }catch (error){
+        throw new Error(`Failed to fetch order : ${error}`)
+    }
+}
