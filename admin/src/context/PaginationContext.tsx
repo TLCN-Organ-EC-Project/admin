@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useRef, useState } from "react";
+import { ReactNode, createContext, useRef } from "react";
 import { proxy } from "valtio"
 
 interface PaginationStore {
@@ -16,7 +16,7 @@ export const PaginationProvider = ({ children }: PaginationContextProps) => {
   
   if (!storeRef.current) {
     storeRef.current = proxy({
-      pagination: null,
+      pagination: 1,
     })
   }
   return (

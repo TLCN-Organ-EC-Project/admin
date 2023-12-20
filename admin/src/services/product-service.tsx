@@ -1,6 +1,6 @@
 import axios from '@api/axios'
 
-export const getListCategory= async() =>{
+export const getListCategory = async () => {
     try {
         const data = await axios({
             url: `/categories`,
@@ -12,7 +12,7 @@ export const getListCategory= async() =>{
     }
 }
 
-export const getListProduct= async(page_id:number) =>{
+export const getListProduct = async (page_id: number) => {
     try {
         const data = await axios({
             url: `/products`,
@@ -28,18 +28,18 @@ export const getListProduct= async(page_id:number) =>{
     }
 }
 
-export const getListOrder=async ()=>{
-    try{
-        const data=await axios({
+export const getListOrder = async (page_id:number) => {
+    try {
+        const data = await axios({
             url: `/admin/orders`,
             method: 'get',
             params: {
-                page_id: 1,
+                page_id: page_id,
                 page_size: 10,
             }
         }).then((res) => res?.data)
         return data;
-    }catch (error){
+    } catch (error) {
         throw new Error(`Failed to fetch order : ${error}`)
     }
 }

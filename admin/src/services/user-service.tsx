@@ -1,12 +1,12 @@
 import axios from '@api/axios'
 
-export const getAllUserByAdmin= async() =>{
+export const getAllUserByAdmin= async(page_id:number) =>{
     try {
         const data = await axios({
             url: `/admin/users`,
             method: 'get',
             params: {
-                page_id: 1,
+                page_id: page_id,
                 page_size: 10,
             }
         }).then((res) => res?.data)

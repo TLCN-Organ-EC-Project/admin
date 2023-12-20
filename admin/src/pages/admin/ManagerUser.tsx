@@ -2,9 +2,15 @@ import { useGetListUserByAdmin } from '@hook/useGetList'
 import { IUserManager } from '@type/@typeUser';
 import ItemUser from '@comp/ManagerUser/ItemUser';
 import Loading from '@comp/Loading/Loading';
+import { usePaginationStore } from '@hook/usePaginationStore';
+import { useSnapshot } from 'valtio';
+import Pagination from '@comp/Pagination/Pagination';
 
 const ManagerUser = () => {
-  const { data: listUser, isLoading: isFetchDataUser } = useGetListUserByAdmin();
+  const paginationStore = usePaginationStore();
+  const detailProductStoreSnapshot = useSnapshot(paginationStore)
+  const { data: listUser, isLoading: isFetchDataUser } = useGetListUserByAdmin(detailProductStoreSnapshot.pagination);
+  console.log(listUser)
   return (
     <div className='w-full'>
         <h2 className='py-4'>Manager User</h2>
@@ -32,6 +38,7 @@ const ManagerUser = () => {
         }
         </table>
       </div>
+      <Pagination/>
     </div>
   )
 }

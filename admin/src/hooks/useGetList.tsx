@@ -3,8 +3,8 @@ import { getAllUserByAdmin,getListProviderById, } from "@service/user-service"
 import { getListCategory,getListProduct,getListOrder } from "@service/product-service"
 
 
-export const useGetListUserByAdmin=()=>{
-    return useQuery(["user-data"],()=>getAllUserByAdmin(),{
+export const useGetListUserByAdmin=(page_id:number)=>{
+    return useQuery(["user-data",page_id],()=>getAllUserByAdmin(page_id),{
         staleTime: 5 * 60 * 1000,
         retry: false
     })
@@ -31,8 +31,8 @@ export const usegetListPd = (page_id:number)=>{
     })
 }
 
-export const useGetListOrderByAdmin=()=>{
-    return useQuery(["order-data"], ()=>getListOrder(),{
+export const useGetListOrderByAdmin=(page_id:number)=>{
+    return useQuery(["order-data",page_id], ()=>getListOrder(page_id),{
         staleTime: 5 * 60 * 1000,
         retry: false
     })

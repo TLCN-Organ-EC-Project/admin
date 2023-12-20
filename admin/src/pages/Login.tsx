@@ -25,12 +25,12 @@ const Login = () => {
     },
   } = useForm<FieldValues>({
     defaultValues: {
-      username: '',
-      password: ''
+      username: 'admin',
+      password: 'secret'
     },
   });
 
-
+  
   const data = {
     username: watch('username') ?? '',
     password: watch('password') ?? '',

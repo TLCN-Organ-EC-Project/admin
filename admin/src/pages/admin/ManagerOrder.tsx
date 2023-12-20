@@ -3,13 +3,18 @@ import { useGetListOrderByAdmin } from '@hook/useGetList'
 import Loading from '@comp/Loading/Loading'
 import { IOrder } from '@type/@typeOrder'
 import ItemOrder from '@comp/ManagerOrder/ItemOrder'
+import Pagination from '@comp/Pagination/Pagination'
+import { usePaginationStore } from '@hook/usePaginationStore'
+import { useSnapshot } from "valtio"
+
 
 const ManagerOrder = () => {
-  const {data:fetchOrder , isLoading:isFetchLoading}=useGetListOrderByAdmin()
-  console.log(fetchOrder)
+  const paginationStore = usePaginationStore();
+  const detailProductStoreSnapshot = useSnapshot(paginationStore)
+  const {data:fetchOrder , isLoading:isFetchLoading}=useGetListOrderByAdmin(detailProductStoreSnapshot.pagination)
   return (
     <div className='w-full'>
-         <h2 className='py-4'>Manager Products</h2>
+         <h2 className='py-4'>Manager Order</h2>
          <div className='w-full'>
          <table className='table-auto mb-6 text-left w-full'>
             <thead className='font-bold bg-blue-500 text-[13px] border border-blue-500 text-center  text-white'>
@@ -32,6 +37,7 @@ const ManagerOrder = () => {
           </tbody>
            }
           </table>
+          <Pagination/>
          </div>
     </div>
   )

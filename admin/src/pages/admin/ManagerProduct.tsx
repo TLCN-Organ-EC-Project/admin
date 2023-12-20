@@ -8,8 +8,10 @@ import Loading from "@comp/Loading/Loading"
 
 const ManagerProduct = () => {
   const paginationStore = usePaginationStore();
-  const snapPaginationStore = useSnapshot(paginationStore)
-  const { data: listProduct, isLoading: isFetchProduct } = usegetListPd(paginationStore.pagination)
+  const detailProductStoreSnapshot = useSnapshot(paginationStore)
+
+  const { data: listProduct, isLoading: isFetchProduct } = usegetListPd(detailProductStoreSnapshot.pagination)
+ 
   return (
     <>
       <div className='w-full'>

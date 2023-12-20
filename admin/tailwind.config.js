@@ -14,7 +14,7 @@ export default {
     },
   },
   plugins: [
-
+      
   ],
   content: [
     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',

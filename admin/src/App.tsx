@@ -12,23 +12,25 @@ import { PaginationProvider } from "src/context/PaginationContext"
 function App() {
   return (
     <div className=''>
-      <Routes>
-        <Route path={path.ADMIN} element={<AdminLayout />}>
-          <Route path={path.DASHBOARD} element={<DashBoard />} />
-          <Route path={path.CREATE_PRODUCTS} element={<Create_Product />} />
-          <Route path={path.MANAGE_USER} element={<ManagerUser />} />
-          <Route 
-            path={path.MANAGE_PRODUCTS} 
-            element={
-              <PaginationProvider>
+      <PaginationProvider>
+
+
+        <Routes>
+          <Route path={path.ADMIN} element={<AdminLayout />}>
+            <Route path={path.DASHBOARD} element={<DashBoard />} />
+            <Route path={path.CREATE_PRODUCTS} element={<Create_Product />} />
+            <Route path={path.MANAGE_USER} element={<ManagerUser />} />
+            <Route
+              path={path.MANAGE_PRODUCTS}
+              element={
                 <ManagerProduct />
-              </PaginationProvider>
-            }
-          />
-          <Route path={path.MANAGE_ORDER} element={<ManagerOrder />} />
-        </Route>
-        <Route path={path.LOGIN} element={<Login />} />
-      </Routes>
+              }
+            />
+            <Route path={path.MANAGE_ORDER} element={<ManagerOrder />} />
+          </Route>
+          <Route path={path.LOGIN} element={<Login />} />
+        </Routes>
+      </PaginationProvider>
     </div>
   )
 }
