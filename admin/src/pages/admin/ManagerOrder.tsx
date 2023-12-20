@@ -32,7 +32,7 @@ const ManagerOrder = () => {
             isFetchLoading ? <Loading/> : 
             <tbody>
             {fetchOrder?.map((el: IOrder, index: number) => (
-              <ItemOrder data={el} key={el.booking_id} />
+                <ItemOrder data={el} key={el.booking_id} />
             ))}
           </tbody>
            }

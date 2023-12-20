@@ -21,3 +21,7 @@ export const apiCreateProduct=(data:ICreateProduct)=>axios({
     method:'post',
     data
 })
+export const apiConfirmOrderByAdmin = (booking_id:string)=>axios({
+    url:`/admin/orders/${booking_id}/confirm`,
+    method:'put'
+})

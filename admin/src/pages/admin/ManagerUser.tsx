@@ -10,7 +10,7 @@ const ManagerUser = () => {
   const paginationStore = usePaginationStore();
   const detailProductStoreSnapshot = useSnapshot(paginationStore)
   const { data: listUser, isLoading: isFetchDataUser } = useGetListUserByAdmin(detailProductStoreSnapshot.pagination);
-  console.log(listUser)
+
   return (
     <div className='w-full'>
         <h2 className='py-4'>Manager User</h2>

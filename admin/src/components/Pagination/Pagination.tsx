@@ -37,6 +37,24 @@ const Pagination = () => {
               3
             </span>
             <span
+              onClick={() => handlePaginationChange(4)}
+              className="relative cursor-pointer hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
+            >
+              4
+            </span>
+            <span
+              onClick={() => handlePaginationChange(5)}
+              className="relative cursor-pointer hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
+            >
+              5
+            </span>
+            <span
+              onClick={() => handlePaginationChange(6)}
+              className="relative cursor-pointer hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
+            >
+              6
+            </span>
+            <span
               className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
             >
             </span>

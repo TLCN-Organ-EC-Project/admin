@@ -18,7 +18,7 @@ const ItemProduct:React.FC<typeData>= ({
     const queryClient = useQueryClient();
     const [update, setUpdate]=useState<typeUpdate | null>(null)
     const { handleSubmit, watch,register, formState: { errors }, reset } = useForm<FieldValues>()
-    const handleDeleteUser=(pid:number)=>{
+    const handleDeleteProduct=(pid:number)=>{
             
     }
   return (
@@ -67,7 +67,7 @@ const ItemProduct:React.FC<typeData>= ({
                     {update?.id === data.id ? <span className='px-3 border border-rose-700 bg-blue-700 py-1  text-white text-sm cursor-pointer' onClick={() => setUpdate(null)}>Back</span>
                         : <span className='px-3 border border-rose-700 bg-blue-700 py-1  text-white text-sm transition hover:text-gray-200 cursor-pointer' onClick={() => setUpdate(data)}>Edit</span>
                     }
-                    <span onClick={() => handleDeleteUser(data.id)} className='ml-2 px-2 border border-blue-700 bg-rose-700 py-1  text-white text-sm transition hover:text-gray-200 cursor-pointer'>Delete</span>
+                    <span onClick={() => handleDeleteProduct(data.id)} className='ml-2 px-2 border border-blue-700 bg-rose-700 py-1  text-white text-sm transition hover:text-gray-200 cursor-pointer'>Delete</span>
                 </td>
             </tr>
             {update 

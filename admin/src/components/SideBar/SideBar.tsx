@@ -9,6 +9,8 @@ import { useAppSelector, useAppDispatch } from "@hook/hooks"
 import path from "@util/path"
 import icons from "@util/icons"
 import { logout } from "@store/user/useSlice"
+import { usePaginationStore } from "@hook/usePaginationStore"
+import { useSnapshot } from "valtio"
 interface children {
   active?: boolean,
 }
@@ -23,6 +25,12 @@ const SideBar: React.FC<children> = ({
 
   const [expanded, setExpanded] = useState(true)
   const [actived, setactived] = useState<number[]>([]);
+  const [pagination, setPagination] = useState(1)
+  const paginationStore = usePaginationStore();
+  const detailProductStoreSnapshot = useSnapshot(paginationStore)
+  const handlePaginationChange = () => {
+    paginationStore.pagination = pagination;
+  };
   const { isLoggedIn, current, token } = useAppSelector((state) => ({
     isLoggedIn: state.user.isLoggedIn,
     current: state.user.current,
@@ -55,7 +63,7 @@ const SideBar: React.FC<children> = ({
         {adminSideBar.map((el) => (
           <div
             key={el.value}
-            onClick={()=>{}}
+            onClick={()=>{ handlePaginationChange();}}
           >
             {el.type === 'single' &&
               <NavLink
