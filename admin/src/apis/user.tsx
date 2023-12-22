@@ -34,3 +34,8 @@ export const apiDeleteCategoryByAdmin=(id:number)=>axios({
     url:`/admin/categories/${id}`,
     method:'delete'
 })
+export const apiCreateCategoryByAdmin = (data:string)=>axios({
+    url:`/admin/categories`,
+    method:'post',
+    data
+})

@@ -1,11 +1,12 @@
 import Input from '@comp/Input/Input'
 import React, { useEffect, useState } from 'react'
 import { FieldValues, useForm } from 'react-hook-form'
-import { apiUpdateCategoryByAdmin } from '@api/user'
+import { apiCreateCategoryByAdmin, apiUpdateCategoryByAdmin } from '@api/user'
 import { toast } from 'react-toastify'
 import { useQueryClient } from 'react-query';
 import { apiDeleteCategoryByAdmin } from '@api/user'
 import Swal from 'sweetalert2'
+
 
 interface Idata {
     id: number,
@@ -52,7 +53,6 @@ const ItemCategory: React.FC<data> = ({
             if (result.isConfirmed) {
                 if (result.isConfirmed ) {
                     const response = await apiDeleteCategoryByAdmin(id)
-                    console.log(response)
                     if (response) {
                         queryClient.invalidateQueries(['category-data'])
                         toast.success('Delete user success')
