@@ -69,18 +69,18 @@ const Login = () => {
               id="username"
               label="Username"
               disabled={isLoading}
-              register={register}
               errors={errors}
               required
+              {...register('username')}
             />
             <Input
               id="password"
               label="Password"
               type='password'
               disabled={isLoading}
-              register={register}
               errors={errors}
               required
+              {...register('password')}
             />
           </div>
           <div className='translate-y-40 '>

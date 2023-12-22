@@ -30,7 +30,7 @@ const ItemProduct:React.FC<typeData>= ({
                         <Input
                             id='product_name'
                             type='text'
-                            register={register}
+                            {...register('product_name')}
                             inputUser
                             errors={errors}
                             defaultValue={data?.product_name}
@@ -42,7 +42,7 @@ const ItemProduct:React.FC<typeData>= ({
                         <Input
                             id='thumb'
                             type='text'
-                            register={register}
+                            {...register('thumb')}
                             inputUser
                             errors={errors}
                             defaultValue={data?.thumb}
@@ -55,7 +55,7 @@ const ItemProduct:React.FC<typeData>= ({
                         <Input
                             id='price'
                             type='text'
-                            register={register}
+                            {...register('price')}
                             inputUser
                             defaultValue={data?.price.toString()}
                             errors={errors}
@@ -67,7 +67,7 @@ const ItemProduct:React.FC<typeData>= ({
                     {update?.id === data.id ? <span className='px-3 border border-rose-700 bg-blue-700 py-1  text-white text-sm cursor-pointer' onClick={() => setUpdate(null)}>Back</span>
                         : <span className='px-3 border border-rose-700 bg-blue-700 py-1  text-white text-sm transition hover:text-gray-200 cursor-pointer' onClick={() => setUpdate(data)}>Edit</span>
                     }
-                    <span onClick={() => handleDeleteProduct(data.id)} className='ml-2 px-2 border border-blue-700 bg-rose-700 py-1  text-white text-sm transition hover:text-gray-200 cursor-pointer'>Delete</span>
+                
                 </td>
             </tr>
             {update 

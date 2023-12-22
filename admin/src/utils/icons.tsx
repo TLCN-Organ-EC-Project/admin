@@ -6,6 +6,7 @@ import {BiBookAlt} from 'react-icons/bi'
 import {LiaUserCogSolid} from 'react-icons/lia'
 import {FaJediOrder,FaUnity,FaRegWindowRestore} from 'react-icons/fa'
 import {SiProbot,SiCreatereactapp} from 'react-icons/si'
+import { TbCategory2 } from "react-icons/tb";
 
 const icons={
     ImBin,
@@ -21,5 +22,6 @@ const icons={
     FaJediOrder,
     FaUnity,
     AiOutlineLogin,
+    TbCategory2,
 }
 export default icons

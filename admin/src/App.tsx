@@ -8,6 +8,7 @@ import ManagerOrder from '@page/admin/ManagerOrder'
 import Login from '@page/Login'
 import Create_Product from '@page/admin/Create_Product'
 import { PaginationProvider } from "src/context/PaginationContext"
+import ManagerCategory from '@page/admin/ManagerCategory'
 
 function App() {
   return (
@@ -22,9 +23,10 @@ function App() {
               path={path.MANAGE_PRODUCTS}
               element={
                 <ManagerProduct />
-              }
+              }           
             />
             <Route path={path.MANAGE_ORDER} element={<ManagerOrder />} />
+            <Route path={path.CATEGORY} element={<ManagerCategory />} />
           </Route>
           <Route path={path.LOGIN} element={<Login />} />
         </Routes>
