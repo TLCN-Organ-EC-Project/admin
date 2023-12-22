@@ -25,3 +25,12 @@ export const apiConfirmOrderByAdmin = (booking_id:string)=>axios({
     url:`/admin/orders/${booking_id}/confirm`,
     method:'put'
 })
+export const apiUpdateCategoryByAdmin=(id:number,data:any)=>axios({
+    url:`/admin/categories/${id}`,
+    method:'put',
+    data,
+})
+export const apiDeleteCategoryByAdmin=(id:number)=>axios({
+    url:`/admin/categories/${id}`,
+    method:'delete'
+})

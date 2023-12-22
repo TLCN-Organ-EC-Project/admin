@@ -65,7 +65,6 @@ const ItemUser: React.FC<typeData> = ({
         } else {
             toast.error('Can not update user')
         }
-
         setFakeloading(false)
     }
     let dataUpdate: IUserUpdate = {
