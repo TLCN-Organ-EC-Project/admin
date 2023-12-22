@@ -4,7 +4,6 @@ import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react"
 import { NavLink } from "react-router-dom"
 import clsx from 'clsx'
 import logo from '@asset/logo.webp'
-
 import { useAppSelector, useAppDispatch } from "@hook/hooks"
 import path from "@util/path"
 import icons from "@util/icons"
@@ -36,7 +35,9 @@ const SideBar: React.FC<children> = ({
     current: state.user.current,
     token: state.user.token
   }));
+  
   const dispatch = useAppDispatch()
+  
   const handleShowTabs = (tabID: number) => {
     if (actived.some(el => el === tabID)) {
       setactived((prev: number[]) => prev.filter((el) => el !== tabID));

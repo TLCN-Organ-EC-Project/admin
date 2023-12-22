@@ -19,7 +19,6 @@ const ManagerUser = () => {
           <thead className='font-bold bg-blue-500 text-[13px] border border-blue-500 text-center  text-white'>
             <tr>
               <th className='px-3 py-2 border border-r-2  border-r-white'>#</th>
-              <th className='px-10 py-2 border border-r-2 border-r-white'>Username</th>
               <th className='px-10 py-2 border border-r-2 border-r-white'>Fullname</th>
               <th className='px-10 py-2 border border-r-2  border-r-white'>Email</th>
               <th className='px-10 py-2 border border-r-2  border-r-white'>Phone</th>
@@ -32,7 +31,7 @@ const ManagerUser = () => {
           isFetchDataUser ? <Loading/> :
           <tbody>
           {listUser?.map((el: IUserManager, index: number) => (
-            <ItemUser data={el} index={index} key={el.email} />
+                <ItemUser data={el} index={index} key={el.email} />
           ))}
         </tbody>
         }

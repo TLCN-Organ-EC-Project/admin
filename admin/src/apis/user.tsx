@@ -8,7 +8,7 @@ export const apiLogin = (data:IUserLogin) => axios({
     data
 })
 export const apiDeleteUser = (username:string)=>axios({
-    url:'/admin/users/'+username,
+    url:`/admin/users/${username}`,
     method:'delete',
 })
 export const apiUpdateUser = (data:IUserUpdate, username :string)=>axios({

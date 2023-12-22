@@ -13,8 +13,6 @@ function App() {
   return (
     <div className=''>
       <PaginationProvider>
-
-
         <Routes>
           <Route path={path.ADMIN} element={<AdminLayout />}>
             <Route path={path.DASHBOARD} element={<DashBoard />} />

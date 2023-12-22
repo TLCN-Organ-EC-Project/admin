@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FieldValues, useForm } from 'react-hook-form'
 import moment from 'moment'
 import Swal from 'sweetalert2'
@@ -10,6 +10,9 @@ import { IUserManager } from '@type/@typeUser'
 import { apiUpdateUser } from '@api/user'
 import { IUserUpdate } from '@type/@typeUser'
 import { adminGetListProviderById } from '@hook/useGetList'
+import { usePaginationStore } from '@hook/usePaginationStore'
+import { useSnapshot } from 'valtio'
+import { useAppDispatch, useAppSelector } from '@hook/hooks'
 
 interface typeData {
     data: IUserManager,
@@ -18,57 +21,51 @@ interface typeData {
 interface typeUpdate {
     username: string
 }
-interface typeProvider{
-    id:number, 
-    name:string,
+interface typeProvider {
+    id: number,
+    name: string,
 }
 const ItemUser: React.FC<typeData> = ({
     data, index
 }) => {
+    const dispatch = useAppDispatch()
+    const paginationStore = usePaginationStore();
+    const detailProductStoreSnapshot = useSnapshot(paginationStore)
     const queryClient = useQueryClient();
     const [provide, setProvide] = useState<typeProvider | null>(null)
     const [update, setUpdate] = useState<typeUpdate | null>(null)
-    const { handleSubmit, watch,register, formState: { errors }, reset } = useForm<FieldValues>()
-    
-    const handleDeleteUser = (username: string | undefined) => {
-        Swal.fire({
-            title: 'Are you want delete user',
-            showCancelButton: true
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                if (result.isConfirmed && username) {
-                    const response = await apiDeleteUser(username)
-                    if (response) {
-                        toast.success('Delete user success')
-                        queryClient.invalidateQueries(['user-data'])
-                    } else {
-                        toast.error('Can not delete user')
-                    }
-                }
-            }
-        })
-    }
-
-
+    const { handleSubmit, watch, register, formState: { errors }, reset } = useForm<FieldValues>()
+    const [dataUpdateUser, setDataUpdateUser]=useState<IUserUpdate>({
+        address: watch('address'),
+        email: watch('email'),
+        full_name: watch('full_name'),
+        phone: watch('phone'),
+        province: 'Quảng Nam',
+    })
+    console.log(dataUpdateUser)
+    useEffect(()=>{
+        let dataUpdate:IUserUpdate = {
+            address: watch('address'),
+            email: watch('email'),
+            full_name: watch('full_name'),
+            phone: watch('phone'),
+            province: 'Quảng Nam',
+        }
+        setDataUpdateUser(dataUpdate)
+        console.log(dataUpdateUser)
+        
+    },[watch('email'),watch('full_name'),watch('address'),watch('phone')])
     const handleUpdateUser = async (data: IUserUpdate, username: string) => {
         const response = await apiUpdateUser(data, username)
         if (response) {
             toast.success('Update success user')
-            queryClient.invalidateQueries(['user-data'])
+            queryClient.invalidateQueries(['user-data', detailProductStoreSnapshot.pagination])
             setUpdate(null)
         } else {
             toast.error('Can not update user')
         }
     }
 
-    const dataUpdate:IUserUpdate = {
-        address:watch('address'),
-        email:watch('email'),   
-        full_name:watch('full_name'),
-        phone:watch('phone'),
-        province:'Quảng Nam',
-    }
- 
     return (
         <>
             <tr className='border border-gray-300'>
@@ -76,24 +73,12 @@ const ItemUser: React.FC<typeData> = ({
                 <td className='py-2 px-1'>
                     {update?.username === data?.username ?
                         <Input
-                            id='username'
-                            type='text'
-                            register={register}
-                            inputUser
-                            errors={errors}
-                            defaultValue={data?.username}
-                        />
-                        : <span>{data.username}</span>}
-                </td>
-                <td className='py-2 px-1'>
-                    {update?.username === data?.username ?
-                        <Input
                             id='full_name'
                             type='text'
                             register={register}
                             inputUser
-                            errors={errors}
                             defaultValue={data?.full_name}
+                            errors={errors}
                         />
                         : <span>{data.full_name}</span>}
                 </td>
@@ -137,15 +122,15 @@ const ItemUser: React.FC<typeData> = ({
                         : <span>{data.address}</span>}
                 </td>
                 <td>
-                    {update?.username === data.username ? <span className='px-3 border border-rose-700 bg-blue-700 py-1  text-white text-sm cursor-pointer' onClick={() => setUpdate(null)}>Back</span>
+                    {update?.username === data?.username ? <span className='px-3 border border-rose-700 bg-blue-700 py-1  text-white text-sm cursor-pointer' onClick={() => setUpdate(null)}>Back</span>
                         : <span className='px-3 border border-rose-700 bg-blue-700 py-1  text-white text-sm transition hover:text-gray-200 cursor-pointer' onClick={() => setUpdate(data)}>Edit</span>
                     }
-                    <span onClick={() => handleDeleteUser(data.username)} className='ml-2 px-2 border border-blue-700 bg-rose-700 py-1  text-white text-sm transition hover:text-gray-200 cursor-pointer'>Delete</span>
+
                 </td>
             </tr>
-            {update 
-            && 
-            <button className='border px-2 py-2 cursor-pointer text-white bg-rose-500 flex justify-center text-center items-center' onClick={()=>handleUpdateUser(dataUpdate,data.username)}>Update</button>}
+            {update
+                &&
+                <button className='border px-2 py-2 cursor-pointer text-white bg-rose-500 flex justify-center text-center items-center' onClick={() => handleUpdateUser(dataUpdateUser, data.username)}>Update</button>}
         </>
     )
 }
