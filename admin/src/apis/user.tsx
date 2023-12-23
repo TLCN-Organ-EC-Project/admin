@@ -44,3 +44,8 @@ export const apiAdminAddImageOfProduct=(id:number,data:any)=>axios({
     method:'post',
     data
 })
+export const apiAdminAddProductToStore=(id:number,data:any)=>axios({
+    url:`/admin/products/${id}/store`,
+    method:'post',
+    data
+})

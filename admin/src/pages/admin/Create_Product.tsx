@@ -6,6 +6,7 @@ import { useState } from "react"
 import { FieldValues, useForm } from "react-hook-form"
 import { toast } from "react-toastify"
 import { apiAdminAddImageOfProduct } from "@api/user"
+import AddProductToStore from "@comp/ManagerProduct/AddProductToStore"
 
 interface IProduct {
   gender: string,
@@ -26,14 +27,15 @@ const Create_Product = () => {
       size: ' ',
       size_of_model: '',
       thumb: '',
-      imageproduct:'',
+      imageproduct: '',
     }
   })
   const [Loading, setLoading] = useState(false)
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [profileImage, setProfileImage] = useState<File | string>("");
   const [dataCreateProduct, setDataCreateProduct] = useState<ICreateProduct | null>(null)
-  const [addImageProduct, setAddImageProduct] = useState(false)
+  const [addImageProduct, setAddImageProduct] = useState(true)
+  const [addProductToStore,setAddProductToStore]=useState(true)
   console.log(dataCreateProduct)
   const updateImageTest = async (e: any) => {
     e.preventDefault();
@@ -79,8 +81,8 @@ const Create_Product = () => {
     size_of_model: watch('size_of_model'),
     thumb: watch('thumb'),
   }
-  
-  
+
+
   const handleCreateProduct = async (data: ICreateProduct) => {
     const response = await apiCreateProduct(data)
     console.log(response)
@@ -98,19 +100,20 @@ const Create_Product = () => {
   const formattedData = {
     images: trimmedImageArray,
   };
-  console.log(formattedData)
-  const handleAddImageProduct=async(formattedData:any)=>{
-    if(dataCreateProduct?.id){
-      const response= await apiAdminAddImageOfProduct(dataCreateProduct?.id,formattedData)
+
+  const handleAddImageProduct = async (formattedData: any) => {
+    if (dataCreateProduct?.id) {
+      const response = await apiAdminAddImageOfProduct(dataCreateProduct?.id, formattedData)
       console.log(response)
-      if (response){
+      if (response) {
         toast.success('Add success images of product')
-      }else{
+        setAddProductToStore(!addProductToStore)
+      } else {
         toast.error('Can not add images product')
       }
     }
-     
-   
+
+
   }
   return (
     <div className="w-full">
@@ -165,7 +168,7 @@ const Create_Product = () => {
             label="Thumb"
             {...register('thumb')}
             errors={errors}
-          /*   onChange={handleImageChange}  */
+            /*   onChange={handleImageChange}  */
             type="text"
           />
         </div>
@@ -190,8 +193,14 @@ const Create_Product = () => {
               errors={errors}
             />
           </div>
-          <Button label="Add Image Of Product" onClick={() => handleAddImageProduct(formattedData)} />
+          <div className="py-5">
+            <Button label="Add Image Of Product" onClick={() => handleAddImageProduct(formattedData)} />
+          </div>
         </>
+      }
+      {
+        addProductToStore && 
+          <AddProductToStore/>
       }
     </div>
   )

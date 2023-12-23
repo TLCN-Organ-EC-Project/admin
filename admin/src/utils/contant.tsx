@@ -132,3 +132,29 @@ export const category:SubmenuItem[] = [
     }
   ]
   
+export const size=[
+  {
+    id:1,
+    name:'S'
+  },
+  {
+    id:2,
+    name:'L'
+  },
+  {
+    id:3,
+    name:'M'
+  },
+  {
+    id:4,
+    name:'XL'
+  },
+  {
+    id:5,
+    name:'XXL'
+  },
+  {
+    id:6,
+    name:'XXXL'
+  },
+]
