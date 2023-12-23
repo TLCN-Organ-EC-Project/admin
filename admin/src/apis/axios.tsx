@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 
 const instance = axios.create({
   baseURL: 'https://gin-ec-clothing.onrender.com/api',
-  timeout: 5000,
+  timeout: 7000,
 });
 
 instance.interceptors.request.use((config) => {

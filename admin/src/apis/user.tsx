@@ -39,3 +39,8 @@ export const apiCreateCategoryByAdmin = (data:any)=>axios({
     method:'post',
     data
 })
+export const apiAdminAddImageOfProduct=(id:number,data:any)=>axios({
+    url:`/admin/products/${id}`,
+    method:'post',
+    data
+})

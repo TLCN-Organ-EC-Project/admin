@@ -7,6 +7,7 @@ export interface IProduct {
 } 
 
 export interface ICreateProduct{
+    id?:number,
     gender:string, 
     material:string, 
     price:number,
