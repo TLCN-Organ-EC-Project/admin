@@ -60,13 +60,13 @@ const Create_Product = () => {
           <Input
             id="gender"
             label="Gender"
-            register={register}
+            {...register('gender')}
             errors={errors}
           />
           <Input
             id="material"
             label="Material"
-            register={register}
+            {...register('material')}
             errors={errors}
           />
         </div>
@@ -74,13 +74,13 @@ const Create_Product = () => {
           <Input
             id="price"
             label="Price"
-            register={register}
+            {...register('price')}
             errors={errors}
           />
           <Input
             id="product_name"
             label="Product_name"
-            register={register}
+            {...register('product_name')}
             errors={errors}
           />
         </div>
@@ -88,13 +88,13 @@ const Create_Product = () => {
           <Input
             id="size"
             label="Size"
-            register={register}
+            {...register('size')}
             errors={errors}
           />
           <Input
             id="size_of_model"
             label="Size_of_model"
-            register={register}
+            {...register('size_of_model')}
             errors={errors}
           />
         </div>
@@ -102,7 +102,7 @@ const Create_Product = () => {
           <Input
             id="thumb"
             label="Thumb"
-            register={register}
+            {...register('thumb')}
             errors={errors}
             onChange={handleImageChange}
             type="file"

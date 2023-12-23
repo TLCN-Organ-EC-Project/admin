@@ -17,8 +17,8 @@ const ManagerCategory = () => {
     const handleInputChange = (e: any) => {
         setInputValue(e.target.value);
     };
-    const handleSubmit =async(name:string) => {
-        const responen= await apiCreateCategoryByAdmin(name)
+    const handleSubmit =async(name:any) => {
+        const responen= await apiCreateCategoryByAdmin({name})
         if (responen){
             toast.success('Update success category')
             queryClient.invalidateQueries(['category-data'])
@@ -26,7 +26,7 @@ const ManagerCategory = () => {
             toast.error('Can not create category')
         }
     };
-    console.log(inputValue)
+   
     return (
         <div className='w-full'>
             <h2 className='py-4'>Manager Order</h2>
