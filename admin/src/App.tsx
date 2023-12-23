@@ -9,6 +9,8 @@ import Login from '@page/Login'
 import Create_Product from '@page/admin/Create_Product'
 import { PaginationProvider } from "src/context/PaginationContext"
 import ManagerCategory from '@page/admin/ManagerCategory'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -30,6 +32,19 @@ function App() {
           </Route>
           <Route path={path.LOGIN} element={<Login />} />
         </Routes>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={true}
+          newestOnTop={true}
+          closeOnClick
+          rtl={true}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover={false}
+          theme="colored"
+        />
+        <ToastContainer />
       </PaginationProvider>
     </div>
   )

@@ -17,7 +17,7 @@ export const apiUpdateUser = (data:IUserUpdate, username :string)=>axios({
     data
 })
 export const apiCreateProduct=(data:ICreateProduct)=>axios({
-    url:'/admin/products',
+    url:`/admin/products`,
     method:'post',
     data
 })

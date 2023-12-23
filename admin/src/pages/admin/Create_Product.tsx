@@ -1,18 +1,38 @@
 import { apiCreateProduct } from "@api/user"
 import Button from "@comp/Button/Button"
 import Input from "@comp/Input/Input"
+import { ICreateProduct } from "@type/@typeProduct"
 import { useState } from "react"
 import { FieldValues, useForm } from "react-hook-form"
+import { toast } from "react-toastify"
 
+interface IProduct {
+  gender: string,
+  material: string,
+  price: number,
+  product_name: string,
+  size: string,
+  size_of_model: string,
+  thumb: string,
+}
 const Create_Product = () => {
-  const { handleSubmit, watch, register, formState: { errors }, reset } = useForm<FieldValues>()
-
+  const { handleSubmit, watch, setValue, register, formState: { errors }, reset } = useForm<FieldValues>({
+    defaultValues: {
+      gender: '',
+      material: '',
+      price: '',
+      product_name: '',
+      size: ' ',
+      size_of_model: '',
+      thumb: '',
+    }
+  })
   const [Loading, setLoading] = useState(false)
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-
-
   const [profileImage, setProfileImage] = useState<File | string>("");
-  const updateImage = async (e: any) => {
+  const [dataCreateProduct, setDataCreateProduct] = useState<ICreateProduct | null>(null)
+  const [addImageProduct, setAddImageProduct] = useState(true)
+  const updateImageTest = async (e: any) => {
     e.preventDefault();
     setLoading(true);
 
@@ -21,18 +41,16 @@ const Create_Product = () => {
       if (
         profileImage &&
         typeof profileImage !== 'string'
-        &&  
+        &&
         (
-        (profileImage as File).type === 'image/png' ||
-        (profileImage as File).type === 'image/jpg' ||
-        (profileImage as File).type === 'image/jpeg'
+          (profileImage as File).type === 'image/png' ||
+          (profileImage as File).type === 'image/jpg' ||
+          (profileImage as File).type === 'image/jpeg'
         )
       ) {
-        const image= new FormData()
+        const image = new FormData()
         image.append('file', profileImage)
         image.append('cloud_name', "dqotbu16k")
-      /*   image.append('upload_preset') */
-
       } else {
         console.log('Invalid file type or no file selected');
       }
@@ -49,8 +67,26 @@ const Create_Product = () => {
       setImagePreview(URL.createObjectURL(selectedFile));
     }
   };
-  const handleCreateProduct = () => {
+  let ICreateProduct: IProduct = {
+    gender: watch('gender'),
+    material: watch('material'),
+    price: parseInt(watch('price')),
+    product_name: watch('product_name'),
+    size: watch('size'),
+    size_of_model: watch('size_of_model'),
+    thumb: watch('thumb'),
+  }
+  console.log(dataCreateProduct)
 
+  const handleCreateProduct = async (data: ICreateProduct) => {
+    const response = await apiCreateProduct(data)
+    if (response?.data) {
+      setDataCreateProduct(response?.data)
+      toast.success('Create success product')
+      setAddImageProduct(!addImageProduct)
+    } else {
+      toast.error('Can not create product')
+    }
   }
   return (
     <div className="w-full">
@@ -76,6 +112,7 @@ const Create_Product = () => {
             label="Price"
             {...register('price')}
             errors={errors}
+            type="number"
           />
           <Input
             id="product_name"
@@ -104,8 +141,8 @@ const Create_Product = () => {
             label="Thumb"
             {...register('thumb')}
             errors={errors}
-            onChange={handleImageChange}
-            type="file"
+            onChange={handleImageChange} 
+            type="text"
           />
         </div>
         {
@@ -115,8 +152,22 @@ const Create_Product = () => {
         }
       </div>
       <div className="py-4">
-        <Button label="Create Product" onClick={updateImage} />
+        <Button label="Create Product" onClick={() => handleCreateProduct(ICreateProduct)} />
       </div>
+      {
+        addImageProduct &&
+        <>
+          <div>Add Image of Product </div>
+          <div className="pt-10">
+            <Input
+              id="imageproduct"
+              label="Image of Product"
+              {...register('imageproduct')}
+              errors={errors}
+            />
+          </div>
+        </>
+      }
     </div>
   )
 }

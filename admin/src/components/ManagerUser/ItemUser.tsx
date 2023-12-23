@@ -33,7 +33,7 @@ const ItemUser: React.FC<typeData> = ({
     const detailProductStoreSnapshot = useSnapshot(paginationStore)
     const queryClient = useQueryClient();
     const [enableEdit, setEnableEdit] = useState<boolean>(false)
-
+    const [fakeLoading, setFakeloading] = useState(false)
     const { handleSubmit, watch, setValue, register, formState: { errors }, reset } = useForm<FieldValues>({
         defaultValues: {
             full_name: '',
@@ -51,7 +51,6 @@ const ItemUser: React.FC<typeData> = ({
         setValue('address', data.address)
     }, [data])
 
-    const [fakeLoading, setFakeloading] = useState(false)
 
 
     const handleUpdateUser = async (data: IUserUpdate, username: string) => {
@@ -63,6 +62,7 @@ const ItemUser: React.FC<typeData> = ({
             queryClient.invalidateQueries(['user-data', detailProductStoreSnapshot.pagination])
             setEnableEdit(false)
         } else {
+           
             toast.error('Can not update user')
         }
         setFakeloading(false)

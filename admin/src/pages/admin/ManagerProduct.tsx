@@ -10,8 +10,7 @@ const ManagerProduct = () => {
   const paginationStore = usePaginationStore();
   const detailProductStoreSnapshot = useSnapshot(paginationStore)
 
-  const { data: listProduct, isLoading: isFetchProduct } = usegetListPd(detailProductStoreSnapshot.pagination)
- 
+  const { data: listProduct, isLoading: isFetchProduct } = usegetListPd(detailProductStoreSnapshot.pagination) 
   return (
     <>
       <div className='w-full'>
