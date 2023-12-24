@@ -28,3 +28,14 @@ export const getListProviderById=async(pid:number)=>{
     }
 }
 
+export const getListIncomeMothly=async(month:any,year:any)=>{
+    try{
+        const data =await axios({
+            url: `/admin/income/monthly?month=${month}&year=${year}`,
+            method:'get',
+        }).then ((res)=>res?.data)
+        return data;
+    }catch (error){
+        throw Error (`Failed to fetch Income month: ${error}`);
+    }
+}

@@ -54,3 +54,7 @@ export const apiAddProductInCategory=(id:any, data:any)=>axios({
     method:'post',
     data
 })
+export const apiGetInComeMonthly=(month:number,year:number)=>axios({
+    url: `/admin/income/monthly?month=${month}&year=${year}`,
+    method:'get',
+})

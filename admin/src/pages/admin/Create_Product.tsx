@@ -172,6 +172,9 @@ const Create_Product = () => {
     console.log(response)
     if (response) {
       toast.success('Add success product in category')
+      setAddProductToStore(!addProductToStore)
+      setAddProductToCategory(!addProductToCategory)
+      setAddImageProduct(!addImageProduct)
     } else {
       toast.error('Can not add  product in category')
     }

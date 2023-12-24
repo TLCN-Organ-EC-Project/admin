@@ -1,5 +1,5 @@
 import { useQuery } from "react-query"
-import { getAllUserByAdmin,getListProviderById, } from "@service/user-service"
+import { getAllUserByAdmin,getListIncomeMothly,getListProviderById, } from "@service/user-service"
 import { getListCategory,getListProduct,getListOrder } from "@service/product-service"
 
 
@@ -33,6 +33,13 @@ export const usegetListPd = (page_id:number)=>{
 
 export const useGetListOrderByAdmin=(page_id:number)=>{
     return useQuery(["order-data",page_id], ()=>getListOrder(page_id),{
+        staleTime: 5 * 60 * 1000,
+        retry: false
+    })
+}
+
+export const useGetIncomeMonthly=(month:number,year:number)=>{
+    return useQuery(["income-monthly",month,year], ()=>getListIncomeMothly(month,year),{
         staleTime: 5 * 60 * 1000,
         retry: false
     })

@@ -3,6 +3,7 @@ import { dashboard } from '@util/contant'
 import DashboardItem from '@comp/Dashboard/DashboardItem'
 import ChartDash from '@comp/Dashboard/ChartDash'
 import GradientChart from '@comp/Dashboard/GradientChart'
+import IncomeMonthly from '@comp/Dashboard/IncomeMonthly'
 
 const DashBoard = () => {
   return (
@@ -13,6 +14,9 @@ const DashBoard = () => {
               <DashboardItem data={el} key={el.id}/>
             ))}
         </div>  
+        <div>
+          <IncomeMonthly/>
+        </div>
         <div className='flex gap-2 h-[550px]'>
           <div className='w-[50%]'>
               <ChartDash/>

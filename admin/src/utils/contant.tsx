@@ -60,8 +60,8 @@ export const adminSideBar: typeadminSideBar[] = [
 export const dashboard: typeDashBoard[] = [
     {
         id: 1,
-        title: 'Bookings',
-        count: '281',
+        title: 'Orders',
+        count: '81',
         desc: '+55% than lask week',
         color: '#000000',
         icon: <BiBookAlt size={30} color="white" />
@@ -157,4 +157,51 @@ export const size=[
     id:6,
     name:'XXXL'
   },
+]
+export const month=[
+  {
+    name:1,
+    value:1,
+  },
+  {
+    name:2,
+    value:2,
+  },
+  {
+    name:3,
+    value:3,
+  },
+  {
+    name:4,
+    value:4,
+  },
+  {
+    name:5,
+    value:5,
+  },
+  {
+    name:6,
+    value:6,
+  },
+  {
+    name:7,
+    value:7,
+  }, {
+    name:8,
+    value:8,
+  },
+  {
+    name:9,
+    value:9,
+  }, {
+    name:10,
+    value:10,
+  },
+  {
+    name:11,
+    value:11,
+  }, {
+    name:12,
+    value:12,
+  }
 ]
