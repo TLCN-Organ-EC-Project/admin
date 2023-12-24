@@ -1,4 +1,4 @@
-import { apiCreateProduct } from "@api/user"
+import { apiAdminAddProductToStore, apiCreateProduct } from "@api/user"
 import Button from "@comp/Button/Button"
 import Input from "@comp/Input/Input"
 import { ICreateProduct } from "@type/@typeProduct"
@@ -34,9 +34,33 @@ const Create_Product = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [profileImage, setProfileImage] = useState<File | string>("");
   const [dataCreateProduct, setDataCreateProduct] = useState<ICreateProduct | null>(null)
-  const [addImageProduct, setAddImageProduct] = useState(true)
-  const [addProductToStore,setAddProductToStore]=useState(true)
-  console.log(dataCreateProduct)
+  const [addImageProduct, setAddImageProduct] = useState(false)
+  const [addProductToStore, setAddProductToStore] = useState(false)
+  const [addProductToCategory, setAddProductToCategory] = useState(true)
+  const [sizeInput, setSizeInput] = useState<string>('');
+  const [quantityInput, setQuantityInput] = useState<string>('');
+  const [result, setResult] = useState<{ quantity: number[]; size: string[] }>({ quantity: [], size: [] });
+
+  const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSizeInput(event.target.value);
+  };
+
+  const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQuantityInput(event.target.value);
+  };
+
+  const handleAdd = () => {
+    const quantities = quantityInput.split(',').map((q) => parseInt(q, 10));
+    const sizes = sizeInput.split(',').map((s) => s.trim());
+    setResult((prevResult) => ({
+      quantity: [...prevResult.quantity, ...quantities],
+      size: [...prevResult.size, ...sizes],
+    }));
+    setSizeInput('');
+    setQuantityInput('');
+  };
+  console.log(result)
+
   const updateImageTest = async (e: any) => {
     e.preventDefault();
     setLoading(true);
@@ -85,7 +109,6 @@ const Create_Product = () => {
 
   const handleCreateProduct = async (data: ICreateProduct) => {
     const response = await apiCreateProduct(data)
-    console.log(response)
     if (response?.data) {
       setDataCreateProduct(response?.data)
       toast.success('Create success product')
@@ -101,6 +124,14 @@ const Create_Product = () => {
     images: trimmedImageArray,
   };
 
+  const quatityAndSize = {
+    "quantity": [
+      30, 50
+    ],
+    "size": [
+      "M", "L"
+    ]
+  }
   const handleAddImageProduct = async (formattedData: any) => {
     if (dataCreateProduct?.id) {
       const response = await apiAdminAddImageOfProduct(dataCreateProduct?.id, formattedData)
@@ -114,6 +145,18 @@ const Create_Product = () => {
     }
 
 
+  }
+  const handleAddProductToStore = async (data: any) => {
+    handleAdd()
+    if (dataCreateProduct?.id) {
+      const response = await apiAdminAddProductToStore(dataCreateProduct?.id, data)
+      console.log(response)
+      if (response) {
+        toast.success('Add success images of product')
+      } else {
+        toast.error('Can not add images product')
+      }
+    }
   }
   return (
     <div className="w-full">
@@ -199,8 +242,44 @@ const Create_Product = () => {
         </>
       }
       {
-        addProductToStore && 
-          <AddProductToStore/>
+        addProductToStore &&
+        <>
+          <div className="pt-8">Add Product to Store</div>
+          <div className="flex gap-2 justify-between py-4">
+            <div className='text-gray-800 font-semibold'>Size</div>
+            <div className='text-gray-800 font-semibold'>Quantity</div>
+          </div>
+          <div className="flex gap-5">
+            <div className="mb-6">
+              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="sizeInput">Input size</label>
+              <input
+                type="text"
+                id="sizeInput"
+                value={sizeInput}
+                onChange={handleSizeChange}
+                className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+            </div>
+            <div className="mb-6">
+              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="quantityInput">Input quantiy</label>
+              <input
+                type="text"
+                id="quantityInput"
+                value={quantityInput}
+                onChange={handleQuantityChange}
+                className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+            </div>
+          </div>
+          <Button label="Add Product To Store" onClick={() => handleAddProductToStore(quatityAndSize)} />
+        </>
+      }
+      {
+        addProductToCategory && <>
+          <div className="pt-8">Add Product to Category</div>
+          <div>
+            
+          </div>
+          <Button label="Add Product To Category" onClick={() => handleAddProductToStore(quatityAndSize)} />
+        </>
       }
     </div>
   )

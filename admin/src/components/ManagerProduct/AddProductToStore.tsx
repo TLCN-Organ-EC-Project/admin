@@ -11,6 +11,7 @@ interface SizeData {
 
 const AddProductToStore = () => {
     const [quantityData, setQuantityData] = useState<SizeData>({ quantity: [], size: [] });
+
     const handleQuantityChangeDebounced = useCallback(
         debounce((event: React.ChangeEvent<HTMLInputElement>, sizeId: string) => {
             const value = event.target.value;
@@ -21,8 +22,6 @@ const AddProductToStore = () => {
         }, 1000),
         []
     );
-
-
     return (
         <>
             <div className="pt-8">Add Product to Store</div>
