@@ -29,7 +29,7 @@ const ManagerCategory = () => {
    
     return (
         <div className='w-full'>
-            <h2 className='py-4'>Manager Order</h2>
+            <h2 className='py-4'>Manager Category</h2>
             <div className='w-full'>
                 <table className='table-auto mb-6 text-left w-full'>
                     <thead className='font-bold bg-blue-500 text-[13px] border border-blue-500 text-center  text-white'>

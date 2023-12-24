@@ -55,9 +55,9 @@ const ItemCategory: React.FC<data> = ({
                     const response = await apiDeleteCategoryByAdmin(id)
                     if (response) {
                         queryClient.invalidateQueries(['category-data'])
-                        toast.success('Delete user success')
+                        toast.success('Delete category success')
                     } else {
-                        toast.error('Can not delete order')
+                        toast.error('Can not delete category')
                     }
                 }
             }

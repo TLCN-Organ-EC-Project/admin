@@ -57,7 +57,7 @@ const ItemUser: React.FC<typeData> = ({
         setFakeloading(true)
 
         const response = await apiUpdateUser(data, username)
-        if (response) {
+        if (response?.data) {
             toast.success('Update success user')
             queryClient.invalidateQueries(['user-data', detailProductStoreSnapshot.pagination])
             setEnableEdit(false)
