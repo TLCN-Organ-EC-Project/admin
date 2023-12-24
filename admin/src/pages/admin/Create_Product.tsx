@@ -7,6 +7,11 @@ import { FieldValues, useForm } from "react-hook-form"
 import { toast } from "react-toastify"
 import { apiAdminAddImageOfProduct } from "@api/user"
 import AddProductToStore from "@comp/ManagerProduct/AddProductToStore"
+import { getListCategoryAdmin } from "@hook/useGetList"
+import ItemCategory from "@comp/ManagerCategory/ItemCategory"
+import Loading from "@comp/Loading/Loading"
+import { category } from "@util/contant"
+import { apiAddProductInCategory } from "@api/user"
 
 interface IProduct {
   gender: string,
@@ -30,16 +35,18 @@ const Create_Product = () => {
       imageproduct: '',
     }
   })
-  const [Loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [profileImage, setProfileImage] = useState<File | string>("");
   const [dataCreateProduct, setDataCreateProduct] = useState<ICreateProduct | null>(null)
   const [addImageProduct, setAddImageProduct] = useState(false)
   const [addProductToStore, setAddProductToStore] = useState(false)
-  const [addProductToCategory, setAddProductToCategory] = useState(true)
+  const [addProductToCategory, setAddProductToCategory] = useState(false)
   const [sizeInput, setSizeInput] = useState<string>('');
   const [quantityInput, setQuantityInput] = useState<string>('');
   const [result, setResult] = useState<{ quantity: number[]; size: string[] }>({ quantity: [], size: [] });
+  const [activeTab, setActiveTab] = useState(category[0].id)
+
 
   const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSizeInput(event.target.value);
@@ -48,7 +55,6 @@ const Create_Product = () => {
   const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuantityInput(event.target.value);
   };
-
   const handleAdd = () => {
     const quantities = quantityInput.split(',').map((q) => parseInt(q, 10));
     const sizes = sizeInput.split(',').map((s) => s.trim());
@@ -59,8 +65,6 @@ const Create_Product = () => {
     setSizeInput('');
     setQuantityInput('');
   };
-  console.log(result)
-
   const updateImageTest = async (e: any) => {
     e.preventDefault();
     setLoading(true);
@@ -135,7 +139,6 @@ const Create_Product = () => {
   const handleAddImageProduct = async (formattedData: any) => {
     if (dataCreateProduct?.id) {
       const response = await apiAdminAddImageOfProduct(dataCreateProduct?.id, formattedData)
-      console.log(response)
       if (response) {
         toast.success('Add success images of product')
         setAddProductToStore(!addProductToStore)
@@ -152,10 +155,25 @@ const Create_Product = () => {
       const response = await apiAdminAddProductToStore(dataCreateProduct?.id, data)
       console.log(response)
       if (response) {
-        toast.success('Add success images of product')
+        toast.success('Add success Product To Store')
+        setAddProductToCategory(!addProductToCategory)
       } else {
-        toast.error('Can not add images product')
+        toast.error('Can not add Product To Store')
       }
+    }
+  }
+  const dataProductCategory={
+    "product_id": [
+      dataCreateProduct?.id
+    ]
+  }
+  const handleAddProductToCategory = async (data: any) => {
+    const response=await apiAddProductInCategory(activeTab,data)
+    console.log(response)
+    if (response) {
+      toast.success('Add success product in category')
+    } else {
+      toast.error('Can not add  product in category')
     }
   }
   return (
@@ -269,16 +287,31 @@ const Create_Product = () => {
                 className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
             </div>
           </div>
-          <Button label="Add Product To Store" onClick={() => handleAddProductToStore(quatityAndSize)} />
+          <div className="py-5">
+            <Button label="Add Product To Store" onClick={() => handleAddProductToStore(quatityAndSize)} />
+          </div>
         </>
       }
       {
         addProductToCategory && <>
           <div className="pt-8">Add Product to Category</div>
           <div>
-            
+            {
+              <div>
+                {category?.map((el: any) => (
+                  <div
+                    onClick={() => { setActiveTab(el.id); }}
+                    className={`${activeTab === el.id ? "text-gray-900 bg-sky-500 " : "hover:text-gray-700"
+                      } rounded-full px-3 py-1.5 text-sm font-medium cursor-pointer text-gray-900 outline-2  outline-sky-300 transition focus-visible:outline
+                                  `}
+                    key={el.id}
+                  >{el.text}
+                  </div>
+                ))}
+              </div>
+            }
           </div>
-          <Button label="Add Product To Category" onClick={() => handleAddProductToStore(quatityAndSize)} />
+          <Button label="Add Product To Category" onClick={() => handleAddProductToCategory(dataProductCategory)} />
         </>
       }
     </div>

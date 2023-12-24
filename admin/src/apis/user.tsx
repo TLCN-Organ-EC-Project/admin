@@ -49,3 +49,8 @@ export const apiAdminAddProductToStore=(id:number,data:any)=>axios({
     method:'post',
     data
 })
+export const apiAddProductInCategory=(id:any, data:any)=>axios({
+    url:`/admin/categories/${id}/products`,
+    method:'post',
+    data
+})
