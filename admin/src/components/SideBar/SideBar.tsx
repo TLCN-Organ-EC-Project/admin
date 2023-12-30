@@ -23,8 +23,8 @@ const SideBar: React.FC<children> = ({
 
   const [expanded, setExpanded] = useState(true)
   const [actived, setactived] = useState<number[]>([]);
-  const [pagination, setPagination] = useState(1)
   const paginationStore = usePaginationStore();
+  let pagination=1 
 
   const handlePaginationChange = () => {
     paginationStore.pagination = pagination;

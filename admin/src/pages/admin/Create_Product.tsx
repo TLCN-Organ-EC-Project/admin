@@ -32,7 +32,7 @@ const Create_Product = () => {
     }
   })
 /*   const [loading, setLoading] = useState(false) */
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+ /*  const [imagePreview, setImagePreview] = useState<string | null>(null); */
 /*   const [profileImage, setProfileImage] = useState<File | string>(""); */
   const [dataCreateProduct, setDataCreateProduct] = useState<ICreateProduct | null>(null)
   const [addImageProduct, setAddImageProduct] = useState(false)
@@ -40,7 +40,8 @@ const Create_Product = () => {
   const [addProductToCategory, setAddProductToCategory] = useState(false)
   const [sizeInput, setSizeInput] = useState<string>('');
   const [quantityInput, setQuantityInput] = useState<string>('');
-  const [result, setResult] = useState<{ quantity: number[]; size: string[] }>({ quantity: [], size: [] });
+  /* const [result, setResult] = useState<{ quantity: number[]; size: string[] }>({ quantity: [], size: [] }); */
+ /*  let setResult:any={ quantity: [], size: [] } */
   const [activeTab, setActiveTab] = useState(category[0].id)
 
 
@@ -52,12 +53,12 @@ const Create_Product = () => {
     setQuantityInput(event.target.value);
   };
   const handleAdd = () => {
-    const quantities = quantityInput.split(',').map((q) => parseInt(q, 10));
+   /*  const quantities = quantityInput.split(',').map((q) => parseInt(q, 10));
     const sizes = sizeInput.split(',').map((s) => s.trim());
-    setResult((prevResult) => ({
+    setResult((prevResult:any) => ({
       quantity: [...prevResult.quantity, ...quantities],
       size: [...prevResult.size, ...sizes],
-    }));
+    })); */
     setSizeInput('');
     setQuantityInput('');
   };
@@ -148,7 +149,6 @@ const Create_Product = () => {
     handleAdd()
     if (dataCreateProduct?.id) {
       const response = await apiAdminAddProductToStore(dataCreateProduct?.id, data)
-      console.log(response)
       if (response) {
         toast.success('Add success Product To Store')
         setAddProductToCategory(!addProductToCategory)
@@ -164,7 +164,6 @@ const Create_Product = () => {
   }
   const handleAddProductToCategory = async (data: any) => {
     const response=await apiAddProductInCategory(activeTab,data)
-    console.log(response)
     if (response) {
       toast.success('Add success product in category')
       setAddProductToStore(!addProductToStore)
@@ -231,11 +230,11 @@ const Create_Product = () => {
             type="text"
           />
         </div>
-        {
+       {/*  {
           imagePreview && (
             <img src={imagePreview && imagePreview} alt="" className="w-60 h-60 object-contain" />
           )
-        }
+        } */}
       </div>
       <div className="py-4">
         <Button label="Create Product" onClick={() => handleCreateProduct(ICreateProduct)} />

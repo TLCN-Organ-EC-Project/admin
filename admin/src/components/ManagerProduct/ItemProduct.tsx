@@ -12,7 +12,7 @@ const ItemProduct: React.FC<typeData> = ({
     data, index
 }) => {
     const [enableEdit, setEnableEdit] = useState<boolean>(false)
-    const [fakeLoading, setFakeloading] = useState(false)
+    let fakeLoading=false
     const { setValue, register, formState: { errors } } = useForm<FieldValues>({
         defaultValues: {
             gender: '',
