@@ -1,8 +1,6 @@
 import React,{ForwardedRef, forwardRef, memo} from 'react'
 import {
   FieldErrors,
-  FieldValues,
-  UseFormRegister
 } from "react-hook-form";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {

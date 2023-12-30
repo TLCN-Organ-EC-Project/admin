@@ -1,5 +1,5 @@
 import { adminSideBar } from "src/utils/contant"
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react"
 import { NavLink } from "react-router-dom"
 import clsx from 'clsx'
@@ -9,7 +9,6 @@ import path from "@util/path"
 import icons from "@util/icons"
 import { logout } from "@store/user/useSlice"
 import { usePaginationStore } from "@hook/usePaginationStore"
-import { useSnapshot } from "valtio"
 interface children {
   active?: boolean,
 }
@@ -26,14 +25,13 @@ const SideBar: React.FC<children> = ({
   const [actived, setactived] = useState<number[]>([]);
   const [pagination, setPagination] = useState(1)
   const paginationStore = usePaginationStore();
-  const detailProductStoreSnapshot = useSnapshot(paginationStore)
+
   const handlePaginationChange = () => {
     paginationStore.pagination = pagination;
   };
-  const { isLoggedIn, current, token } = useAppSelector((state) => ({
+  
+  const { isLoggedIn} = useAppSelector((state) => ({
     isLoggedIn: state.user.isLoggedIn,
-    current: state.user.current,
-    token: state.user.token
   }));
   
   const dispatch = useAppDispatch()

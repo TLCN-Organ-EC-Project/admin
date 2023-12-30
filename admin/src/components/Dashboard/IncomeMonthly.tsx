@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { month } from '@util/contant'
 import { useGetIncomeMonthly } from '@hook/useGetList';
+import Loading from '@comp/Loading/Loading';
 const IncomeMonthly = () => {
 
   const [selectedMonth, setSelectedMonth] = useState<string>('1');
@@ -15,7 +16,6 @@ const IncomeMonthly = () => {
     setSelectedYear(selectedValue);
   };
   const { data: listCategory, isLoading: isFetchDataUser } = useGetIncomeMonthly(+selectedMonth,+selectedYear);
-  console.log(listCategory)
   return (
     <div>
       <div>Income Monthly</div>
@@ -49,8 +49,10 @@ const IncomeMonthly = () => {
           <option>2025</option>
         </select>
       </div>
-      <div>
-        <span>Income month :{ listCategory ? listCategory : 0} </span>
+      <div>{
+        isFetchDataUser ? <Loading/> :
+        <span>Income month :{ listCategory ? listCategory : 0} </span>  
+        }
       </div>
     </div>
   )

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { IProduct } from '@type/@typeProduct'
-import { useQueryClient } from 'react-query';
 import Input from '@comp/Input/Input';
 import { FieldValues, useForm } from 'react-hook-form';
 
@@ -8,18 +7,13 @@ interface typeData {
     data: IProduct
     index: number
 }
-interface typeUpdate {
-    id: number
-}
+
 const ItemProduct: React.FC<typeData> = ({
     data, index
 }) => {
-
-    const queryClient = useQueryClient();
-    const [update, setUpdate] = useState<typeUpdate | null>(null)
     const [enableEdit, setEnableEdit] = useState<boolean>(false)
     const [fakeLoading, setFakeloading] = useState(false)
-    const { handleSubmit, watch, setValue, register, formState: { errors }, reset } = useForm<FieldValues>({
+    const { setValue, register, formState: { errors } } = useForm<FieldValues>({
         defaultValues: {
             gender: '',
             material: '',
@@ -98,7 +92,7 @@ const ItemProduct: React.FC<typeData> = ({
                             onClick={() => handleUpdateProducts()}
                             disabled={fakeLoading}
                         >
-                            {fakeLoading && <div className='w-5 h-5 border-[3px] animate-spin border-r-white border-y-white border-l-transparent rounded-full'/>}
+                            { fakeLoading && <div className='w-5 h-5 border-[3px] animate-spin border-r-white border-y-white border-l-transparent rounded-full'/>}
                             <div>
                                 Update
                             </div>

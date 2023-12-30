@@ -1,4 +1,3 @@
-import React from 'react'
 import { useGetListOrderByAdmin } from '@hook/useGetList'
 import Loading from '@comp/Loading/Loading'
 import { IOrder } from '@type/@typeOrder'
@@ -31,7 +30,7 @@ const ManagerOrder = () => {
            {
             isFetchLoading ? <Loading/> : 
             <tbody>
-            {fetchOrder?.map((el: IOrder, index: number) => (
+            {fetchOrder?.map((el: IOrder) => (
                 <ItemOrder data={el} key={el.booking_id} />
             ))}
           </tbody>

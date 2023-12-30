@@ -1,4 +1,3 @@
-import React from 'react'
 import { typeDashBoard } from '@type/@typeAdminDashBoard'
 
 const DashboardItem = ({ data }: { data: typeDashBoard }) => {

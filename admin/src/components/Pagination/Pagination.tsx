@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react'
 import { usePaginationStore } from '@hook/usePaginationStore';
-import { useSnapshot } from 'valtio';
 
 const Pagination = () => {
   const paginationStore = usePaginationStore();
-  const detailProductStoreSnapshot = useSnapshot(paginationStore)
   const handlePaginationChange = (newPagination:any) => {
     paginationStore.pagination = newPagination;
   };

@@ -2,7 +2,7 @@ import { apiCreateCategoryByAdmin } from '@api/user';
 import Loading from '@comp/Loading/Loading';
 import ItemCategory from '@comp/ManagerCategory/ItemCategory';
 import { getListCategoryAdmin } from '@hook/useGetList'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 
@@ -42,7 +42,7 @@ const ManagerCategory = () => {
                     {
                         isFetchDataUser ? <Loading /> :
                             <tbody>
-                                {listCategory?.map((el: any, index: number) => (
+                                {listCategory?.map((el: any) => (
                                     <ItemCategory data={el} key={el.booking_id} />
                                 ))}
                             </tbody>

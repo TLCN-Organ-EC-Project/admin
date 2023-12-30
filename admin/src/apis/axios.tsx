@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import axios, {AxiosResponse} from 'axios';
 
 const instance = axios.create({
   baseURL: 'https://gin-ec-clothing.onrender.com/api',

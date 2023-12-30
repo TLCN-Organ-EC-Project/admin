@@ -6,10 +6,6 @@ import { useState } from "react"
 import { FieldValues, useForm } from "react-hook-form"
 import { toast } from "react-toastify"
 import { apiAdminAddImageOfProduct } from "@api/user"
-import AddProductToStore from "@comp/ManagerProduct/AddProductToStore"
-import { getListCategoryAdmin } from "@hook/useGetList"
-import ItemCategory from "@comp/ManagerCategory/ItemCategory"
-import Loading from "@comp/Loading/Loading"
 import { category } from "@util/contant"
 import { apiAddProductInCategory } from "@api/user"
 
@@ -23,7 +19,7 @@ interface IProduct {
   thumb: string,
 }
 const Create_Product = () => {
-  const { handleSubmit, watch, setValue, register, formState: { errors }, reset } = useForm<FieldValues>({
+  const { watch,  register, formState: { errors } } = useForm<FieldValues>({
     defaultValues: {
       gender: '',
       material: '',
@@ -35,9 +31,9 @@ const Create_Product = () => {
       imageproduct: '',
     }
   })
-  const [loading, setLoading] = useState(false)
+/*   const [loading, setLoading] = useState(false) */
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [profileImage, setProfileImage] = useState<File | string>("");
+/*   const [profileImage, setProfileImage] = useState<File | string>(""); */
   const [dataCreateProduct, setDataCreateProduct] = useState<ICreateProduct | null>(null)
   const [addImageProduct, setAddImageProduct] = useState(false)
   const [addProductToStore, setAddProductToStore] = useState(false)
@@ -65,12 +61,11 @@ const Create_Product = () => {
     setSizeInput('');
     setQuantityInput('');
   };
-  const updateImageTest = async (e: any) => {
+ /*  const updateImageTest = async (e: any) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      let imageURL;
       if (
         profileImage &&
         typeof profileImage !== 'string'
@@ -92,14 +87,14 @@ const Create_Product = () => {
     } finally {
       setLoading(false);
     }
-  };
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  }; */
+/*   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files![0];
     setProfileImage(selectedFile);
     if (selectedFile) {
       setImagePreview(URL.createObjectURL(selectedFile));
     }
-  };
+  }; */
   let ICreateProduct: IProduct = {
     gender: watch('gender'),
     material: watch('material'),

@@ -1,30 +1,26 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { IOrder } from '@type/@typeOrder'
 import { useQueryClient } from 'react-query';
-import { FieldValues, useForm } from 'react-hook-form';
-import Input from '@comp/Input/Input';
 import { apiConfirmOrderByAdmin } from '@api/user';
+import { toast } from 'react-toastify';
 
 interface typeData {
     data: IOrder,
-}
-
-interface typeUpdate {
-    booking_id: string
 }
 
 const ItemOrder: React.FC<typeData> = ({
     data
 }) => {
     const queryClient = useQueryClient();
-    const [loading, setLoading] = useState(false)
     const handleConfirmOrder = async (booking_id:string) => {
-        setLoading(true)
-        const response= apiConfirmOrderByAdmin(booking_id)
-        setLoading(false)
-        queryClient.invalidateQueries(['order-data'])
+        const response= await apiConfirmOrderByAdmin(booking_id)
+        if(response){
+            toast.success('Confirm order success')
+            queryClient.invalidateQueries(['order-data'])
+        }else{
+            toast.error('Can not confirm order')
+        }
     }
-    console.log(data)
     return (
         <>
             <tr className='border border-gray-300'>

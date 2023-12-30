@@ -1,7 +1,7 @@
 import Input from '@comp/Input/Input'
 import React, { useEffect, useState } from 'react'
 import { FieldValues, useForm } from 'react-hook-form'
-import { apiCreateCategoryByAdmin, apiUpdateCategoryByAdmin } from '@api/user'
+import {apiUpdateCategoryByAdmin } from '@api/user'
 import { toast } from 'react-toastify'
 import { useQueryClient } from 'react-query';
 import { apiDeleteCategoryByAdmin } from '@api/user'
@@ -21,7 +21,7 @@ const ItemCategory: React.FC<data> = ({
 
     const [fakeLoading, setFakeloading] = useState(false)
     const [enableEdit, setEnableEdit] = useState<boolean>(false)
-    const { handleSubmit, watch, setValue, register, formState: { errors }, reset } = useForm<FieldValues>({
+    const { watch, setValue, register, formState: { errors } } = useForm<FieldValues>({
         defaultValues: {
             name: '',   
         }

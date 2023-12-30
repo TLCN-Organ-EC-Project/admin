@@ -1,4 +1,3 @@
-import React from 'react'
 import { dashboard } from '@util/contant' 
 import DashboardItem from '@comp/Dashboard/DashboardItem'
 import ChartDash from '@comp/Dashboard/ChartDash'

@@ -1,11 +1,10 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback} from 'react'
 import { FieldValues, useForm } from "react-hook-form";
 import Swal from 'sweetalert2'
 import { SiInteractiondesignfoundation } from 'react-icons/si'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import Button from '@comp/Button/Button';
-import { IUserSchema } from '@type/@typeUser';
 import { apiLogin } from '@api/user';
 import path from '@util/path';
 import Input from '@comp/Input/Input'
@@ -13,12 +12,9 @@ import { login } from '@store/user/useSlice';
 
 const Login = () => {
   const dispatch = useDispatch()
-  const [isLoading, setIsLoading] = useState(false);
-  const [dataUserLogin, setDataUserLogin] = useState<IUserSchema>()
   const navigate = useNavigate()
   const {
     register,
-    handleSubmit,
     watch,
     formState: {
       errors,
@@ -35,14 +31,11 @@ const Login = () => {
     username: watch('username') ?? '',
     password: watch('password') ?? '',
   };
-
-  console.log(data  )
   const handleSignIn = useCallback(async () => {
     if (data !== null && data !== undefined) {
       const response = await apiLogin(data)
       if (response && response?.data) {
         const token = (response.headers as any)?.get('x-access-token')
-        setDataUserLogin(response.data)
         navigate(`/${path.DASHBOARD}`)
         dispatch(login({
           isLoggedIn: true,
@@ -68,7 +61,6 @@ const Login = () => {
             <Input
               id="username"
               label="Username"
-              disabled={isLoading}
               errors={errors}
               required
               {...register('username')}
@@ -77,8 +69,7 @@ const Login = () => {
               id="password"
               label="Password"
               type='password'
-              disabled={isLoading}
-              errors={errors}
+              errors={errors} 
               required
               {...register('password')}
             />

@@ -1,40 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import { FieldValues, useForm } from 'react-hook-form'
 import moment from 'moment'
-import Swal from 'sweetalert2'
 import { toast } from 'react-toastify'
 import Input from '@comp/Input/Input'
 import { useQueryClient } from 'react-query';
-import { apiDeleteUser } from '@api/user'
 import { IUserManager } from '@type/@typeUser'
 import { apiUpdateUser } from '@api/user'
 import { IUserUpdate } from '@type/@typeUser'
-import { adminGetListProviderById } from '@hook/useGetList'
 import { usePaginationStore } from '@hook/usePaginationStore'
 import { useSnapshot } from 'valtio'
-import { useAppDispatch, useAppSelector } from '@hook/hooks'
+
 
 interface typeData {
     data: IUserManager,
     index: number
 }
-interface typeUpdate {
-    username: string
-}
-interface typeProvider {
-    id: number,
-    name: string,
-}
 const ItemUser: React.FC<typeData> = ({
     data, index
 }) => {
-    const dispatch = useAppDispatch()
+
     const paginationStore = usePaginationStore();
     const detailProductStoreSnapshot = useSnapshot(paginationStore)
     const queryClient = useQueryClient();
     const [enableEdit, setEnableEdit] = useState<boolean>(false)
     const [fakeLoading, setFakeloading] = useState(false)
-    const { handleSubmit, watch, setValue, register, formState: { errors }, reset } = useForm<FieldValues>({
+    const { watch, setValue, register, formState: { errors } } = useForm<FieldValues>({
         defaultValues: {
             full_name: '',
             email: '',
